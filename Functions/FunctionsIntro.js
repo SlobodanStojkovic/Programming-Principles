@@ -1,4 +1,8 @@
-//25.3.2021. 
+/*
+===================================================================================
+25.3.2021. 18:00 Dario Stamenkovic - Programming Principles
+===================================================================================
+*/
 
 //This is loop which we will use to create function
 
@@ -158,3 +162,41 @@ function args() {
 
 var result = args(3, 4, 5, 12);
 console.log(result)                 // [Arguments] { '0': 3, '1': 4, '2': 5, '3': 12 }   this is what it returns
+
+
+
+
+/*
+===================================================================================
+27.03.2021. 09:00 Ivan Balic -Programming Principles
+===================================================================================
+*/
+
+//Sum function of two numbers
+
+function sumOfTwoNums (a, b) {
+    var result = a + b;
+    return result;
+}
+
+var sum = sumOfTwoNums(1, 103);
+
+console.log(sum);
+
+
+
+
+
+//Sum function of indefinite amount of numbers
+
+function sumOfAllNums () {
+   var sum = 0;
+   for (var i = 0; i < arguments.length; i++) {
+       sum += arguments[i];
+   }
+   return sum;
+}
+
+var sumAll = sumOfAllNums(1, 103, 5, 6, 15);
+
+console.log(sumAll);
