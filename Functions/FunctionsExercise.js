@@ -3,14 +3,36 @@
 */
 
 function maxNum(num1, num2) {
-    if (num1 >= num2) {
+    if (num1 > num2) {
         return num1;
+    } else if (num2 > num1) {
+        return num2;
     } else {
-        return num2
+        "Numbers are equal."
     }
 }
 
 console.log(maxNum(10, 22))
+
+
+// Ivan Balic way of doing this task
+
+function max(a, b) {
+    var max;
+
+    if (a > b) {
+        return a;
+    }
+
+    if (b > a) {
+        return b;
+    }
+
+    return 'Numbers are equal';             //It is possible to write like this, shorter way because return acts like a break
+
+}
+
+console.log(max(5, 10));
 
 
 
@@ -34,6 +56,32 @@ console.log(isOdd(27));
 
 
 
+
+// Ivan Balic way of doing this task
+
+function isOdd(num) {
+    if(num % 2 !== 0) {
+        return true;
+    }
+
+    return false;
+}
+
+console.log(isOdd(3));
+
+
+//we can add more code like this
+
+var someValue = 3;
+
+if(isOdd(someValue)) {
+    console.log('Odd');
+} else {
+    console.log('Even')
+}
+
+
+
 /*
 3. Write a program that checks if a given number is a three digit long number.
 */
@@ -51,6 +99,27 @@ console.log(is3digit(325));
 //This function needs to be writted otherwise if its meant to include negative numbers.  
 
 
+
+// Ivan Balic way of doing this task
+
+function isThreeDigit(num) {
+    var abs = num;
+    if(abs < 0){
+        abs *= -1;
+    }
+    if(abs >99 && abs < 1000) {
+        return true;
+    }
+
+    return false;
+}
+
+console.log(isThreeDigit(-123));
+
+
+
+
+
 /*
 4. Write a program that calculates an arithmetic mean of four numbers.
 */
@@ -63,6 +132,17 @@ console.log(arithmeticMean(5, 10, 15, 10));
 
 
 
+
+// Ivan Balic way of doing this task
+
+function avg(a, b, c, d) {
+    var sum = (a + b + c + d);
+    var avg = sum / 4;
+
+    return avg;
+}
+
+console.log(avg(5, 10, 15, 20));
 
 
 /*
@@ -171,7 +251,7 @@ function chart(x, y, z) {
         result += '*';
     }
     result += '\n';
-return result;
+    return result;
 }
 
 console.log(chart(3, 5, 7));
@@ -184,8 +264,8 @@ function chart(x, y, z) {
     var result = '';
     var numOfArgs = arguments.length;
 
-    for(var i = 0; i < numOfArgs; i++) {
-        for(var j = 0; j < arguments[i]; j++) {
+    for (var i = 0; i < numOfArgs; i++) {
+        for (var j = 0; j < arguments[i]; j++) {
             result += '*';
         }
         result += '\n';
@@ -234,6 +314,35 @@ function numberOfDigits(num) {
 
 console.log(numberOfDigits(100));
 
+
+
+//Ivan Balic way of doing this task
+
+/*Solution steps:
+num = 150, num(150) > 1(true), digitCounter++(1), num = num / 10 (15.0)       
+num = 15.0, num(15.0) > 1(true), digitCounter++(2), num = num / 10 (1.50)
+num = 1.50, num(1.50) > 1(true), digitCounter++(3), num = num / 10 (0.150)
+num = 0.150, num(0.150) > 1(false), return digitCounter
+
+var numAsString = num + ''; //this gives out '123' for example
+*/
+
+
+//Solution implementation:
+
+function numOfDigits(num) {
+    var digitCounter = 0;
+
+    if (num < 0) {
+        num = num * -1; //if number is negative on this way we make it positive again (can also be written num *= -1;)
+    }
+    for (var i = num; i >= 1; i /= 10) {
+        digitCounter++;
+    }
+    return digitCounter;
+}
+
+console.log(numOfDigits(-100));
 
 
 
