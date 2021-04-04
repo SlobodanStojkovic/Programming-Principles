@@ -44,6 +44,24 @@ console.log(result);
 
 
 
+
+
+var array = ["1", "21", undefined, "42", "1e+3", Infinity];
+
+function nonNumeric (array) {
+    var result = [];                            //we need an array as result, so that is why we put empty array
+    for (var i = 0; i < array.length; i++) {
+        var num = parseFloat(array[i]);         //we need parseFloat because it filters only numbers and everything else is NaN num = [1, 21, NaN, 42, 1000, Infinity], so now we are checking variable num to remove the NaN and Infinite
+        if (isFinite(num)) {                   //if something is in IF we are checking that it is true
+            result[result.length] = num;        // 1 === 0 index, we use result[result.length] to fill in the empty string, so instead of     writing index = 0 => result[index] = num, we write it like this
+        }
+    } return result;
+}
+
+console.log(nonNumeric(array));
+
+
+
 /*
 2. Write a program to join all elements of the array into a string skipping elements
 that are undefined, null, NaN or Infinity.
@@ -62,6 +80,12 @@ for (var i = 0; i < array.length; i++) {
 }
 
 console.log(result); //returns 015false-2247null NULL needs to be removed
+
+
+
+
+
+
 
 
 
