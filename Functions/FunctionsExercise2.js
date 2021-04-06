@@ -79,13 +79,16 @@ console.log(concatenateTimes("Ha", 3));
 */
 
 
+function letterOccurences(string, letter) {
+    var count = 0;
+    for (var i = 0; i < string.length; i++) {
+        if (letter == string[i]) {
+            count++;
+        }
+    } return count;
+}
 
-
-
-
-
-
-
+console.log(letterOccurences("My random string", "n")); //note that this function is not case sensitive, so Upper-case letter N will not be counted if written inside string
 
 
 /*
@@ -96,13 +99,18 @@ the function should return -1.
 ======================================================================================
 */
 
+function positionOfOccurence(string, letter) {
+    var index = 0;
+    for (var i = 0; i < string.length; i++) {
+        if (letter == string[i]) {
+            index = i;
+            break;
+        } else (index = -1);
+    } return index;
+}
 
-
-
-
-
-
-
+console.log(positionOfOccurence("My random string", "n"));  //returns 5 because on index 5 is a first occurence of letter n
+console.log(positionOfOccurence("This is some random string", "w")); //returns -1 because there is no letter w in this string
 
 
 /*
@@ -114,11 +122,21 @@ function should return -1.
 */
 
 
+function positionOfLastOccurence(string, letter) {
+    var index = 0;
+    for (var i = string.length - 1; i > -1; i--) {
+        if (letter == string[i]) {
+            index = i;
+            break;
+        } else (index = -1);
+    } return index;
+}
 
+console.log(positionOfLastOccurence("My random string", "n"));  //returns 14 because on index 14 is a last occurence of letter n
+console.log(positionOfLastOccurence("This is some random string", "s"));//returns 20 because on index 20 is a last occurence of letter n
+console.log(positionOfLastOccurence("This is some random string", "w")); //returns -1 because there is no letter w in this string
 
-
-
-
+//ASK what is "The result should be in human numeration form." 
 
 
 
@@ -132,12 +150,19 @@ represented as “null” in new array.
 ======================================================================================
 */
 
+function convertStringToArray(string) {
+    var result = [];
+    for (i = 0; i < string.length; i++) {
+        if (string[i] != " ")
+            result[i] = string[i];
+        else if (string[i] == " ") {
+            result[i] = "null";
+        }
+    } return result;
+}
 
-
-
-
-
-
+console.log(convertStringToArray("My random string"));
+console.log(convertStringToArray("Random"));
 
 
 
@@ -149,14 +174,26 @@ that has no positive divisors other than 1 and itself.
 ======================================================================================
 */
 
+function PrimeNumber(number) {
+    var result = "";
+    if (number === 1) {
+        result = "The number 1 is not a prime nor a composite number";
 
+    } else if (number === 2) {
+        result = "The number 2 is a prime number";
 
+    } for (i = 2; i < number; i++) {
+        if (number % i == 0) {
+            result = "The " + number + " is a composite number";
+            break;
 
+        } else {
+            result = "The " + number + " is a prime number";
+        }
+    } return result;
+}
 
-
-
-
-
+console.log(PrimeNumber(11));
 
 
 /*
@@ -170,9 +207,21 @@ If separator is not provided, use “-” (dash) as the default separator.
 ======================================================================================
 */
 
+function replaceSpaces(string, separator) {
+    if (separator == "") {
+        separator = "-"
+    }
+    var result = "";
+    for (i = 0; i < string.length; i++) {
+        if (string[i] != " ") {
+            result[i] = string[i];
+        } else if (string[i] == " ") {
+            result[i] = separator;
+        }
+    } return result;
+}
 
-
-
+console.log(replaceSpaces("My random string", "_"));            //NOT WORKING
 
 
 
@@ -186,9 +235,15 @@ at the end of newly created string.
 ======================================================================================
 */
 
+function AddCharsOnEnd(string, numOfFirstChars) {
+    var result = "";
+    add = "...";
+    for (i = 0; i < numOfFirstChars; i++) {
+        result = string[i] + add;
+    } return result;
+}
 
-
-
+console.log(AddCharsOnEnd("Some random string", 4));
 
 
 
@@ -203,6 +258,19 @@ Filter out all non-numeric values.
 ======================================================================================
 */
 
+var arr = ["1", "21", undefined, "42", "1e+3", Infinity];
+
+function convertArrayToString(array) {
+    var result = [];
+    for (i = 0; i < array.length; i++) {
+        var float = parseFloat(array[i]);
+        if (typeof(float) === "number") {
+            result[i] = float;
+        }
+    } return result;
+}
+
+console.log(convertArrayToString(arr));
 
 
 
