@@ -211,22 +211,42 @@ function replaceSpaces(string, separator) {
     if (separator == "") {
         separator = "-"
     }
-    var result = "";
+    var result = [];
     for (i = 0; i < string.length; i++) {
         if (string[i] != " ") {
             result[i] = string[i];
         } else if (string[i] == " ") {
             result[i] = separator;
         }
+    } return result.join();
+}
+
+console.log(replaceSpaces("My random string", "_"));
+console.log(replaceSpaces("My random string", "+"));
+console.log(replaceSpaces("My random string", ""));         //This way returns string with commas, and it is a first try
+
+
+
+
+
+
+function replaceSpaces(string, separator) {
+    if (separator == "") {
+        separator = "-"
+    }
+    var result = [];
+    for (i = 0; i < string.length; i++) {
+        if (string[i] == " ") {
+            result += separator;
+        } else {
+            result += string[i];
+        }
     } return result;
 }
 
-console.log(replaceSpaces("My random string", "_"));            //NOT WORKING
-
-
-
-
-
+console.log(replaceSpaces("My random string", "_"));
+console.log(replaceSpaces("My random string", "+"));
+console.log(replaceSpaces("My random string", ""));
 
 /*
 ======================================================================================
@@ -239,11 +259,11 @@ function AddCharsOnEnd(string, numOfFirstChars) {
     var result = "";
     add = "...";
     for (i = 0; i < numOfFirstChars; i++) {
-        result = string[i] + add;
-    } return result;
+        result += string[i];
+    } return result + add;
 }
 
-console.log(AddCharsOnEnd("Some random string", 4));
+console.log(AddCharsOnEnd("Some random string", 10));
 
 
 
@@ -262,22 +282,18 @@ var arr = ["1", "21", undefined, "42", "1e+3", Infinity];
 
 function convertArrayToString(array) {
     var result = [];
+
     for (i = 0; i < array.length; i++) {
+        var int = parseInt(array[i]);
         var float = parseFloat(array[i]);
-        if (typeof(float) === "number") {
-            result[i] = float;
+
+        if (int == float || isFinite(int)) {
+            result += array[i];
         }
     } return result;
 }
 
-console.log(convertArrayToString(arr));
-
-
-
-
-
-
-
+console.log(convertArrayToString(arr));     //121421e+3
 
 
 
@@ -289,14 +305,19 @@ If someone is already retired, a proper message should be displayed.
 ======================================================================================
 */
 
+function yearsUntilRetirement(gender, birthyear) {
+    var result = 0;
+    if (gender == "male") {
+        result = 65 - (2021 - birthyear);
+    } else {
+        result = 60 - (2021 - birthyear);
+    } if (result < 0) {
+        result = "This person has already retired"
+    } return result;
+}
 
-
-
-
-
-
-
-
+console.log(yearsUntilRetirement("male", 1989));
+console.log(yearsUntilRetirement("female", 1950));
 
 
 /*
@@ -307,3 +328,23 @@ with the correct suffix such as 1st, 2nd, 3rd or 4th.
 11 -> 11th
 ======================================================================================
 */
+
+
+function humanizeNumber(num) {
+    result = "";
+    if (num == 11) {
+        result = num + "th";
+    } else if ((num % 10) == 1) {
+        result = num + "st";
+    } else if ((num % 10) == 2) {
+        result = num + "nd";
+    } else if ((num % 10) == 3) {
+        result = num + "rd";
+    } else if (num > 3) {
+        result = num + "th";
+    } else {
+        result = "Please use positive numbers.";
+    } return result;
+}
+
+console.log(humanizeNumber(11));
