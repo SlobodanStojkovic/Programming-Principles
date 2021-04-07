@@ -8,29 +8,30 @@ Output: [ 3, 1, 12, 149, 53, 414, 500, 19 ]
 */
 
 function changeMinAndMax(array) {
-    result = [];
-    minIndex = 0;
-    maxIndex = 0;
-    for (i = 0; i < array.length; i++) {
-        if (array[i] < array[minIndex]) {
-            minIndex = i;
-        } for (j = 0; j < array.length; j++) {
-            if (array[i] > array[maxIndex]) {
-                maxIndex = j;
+    {
+        result = array;
+        var minIndex = 0;
+        var minvalue = 0,
+        var maxIndex = 0;
+        var maxvalue = 0;
+
+        for (i = 0; i < array.length; i++) {
+            if (array[i] < array[minIndex]) {
+                minIndex = i;
+                minvalue = array[minIndex];
             }
-        } result[i] = array[i];
-        result[minIndex] = array[maxIndex];
-        result[maxIndex] = array[minIndex];
+        } for (j = 0; j < array.length; j++) {
+            if (array[j] > array[maxIndex]) {
+                maxIndex = j;
+                maxvalue = array[maxIndex];
+            }
+        }
+        result[minIndex] = maxvalue;
+        result[maxIndex] = minvalue;
     } return result;
 }
+
 console.log(changeMinAndMax([3, 500, 12, 149, 53, 414, 1, 19]));
-
-
-
-
-
-
-
 
 
 /*
@@ -42,15 +43,17 @@ Output: [ 6.5, 255, 20, 79.5, 31.5, 212, 5.5, 14.5 ]
 ======================================================================================
 */
 
-
-
-
-
-
-
-
-
-
+function divide2Add5Array(array) {
+    var result = [];
+    for (var i = 0; i < array.length; i++) {
+        num = array[i] / 2 + 5;
+        if (num !== 0) {
+        } else {
+            num = 20;
+        } result[result.length] = num;
+    } return result;
+}
+console.log(divide2Add5Array([3, 500, -10, 149, 53, 414, 1, 19]));
 
 
 /*
@@ -70,15 +73,50 @@ Bill acquired 59 points and earned 6. Micahel acquired 50 points and failed to c
 ======================================================================================
 */
 
+function studentPoints(students, points) {
+    var result = [];
+    var index1 = 0;
+    var index2 = 1;
+    for (i = 0; i < students.length; i++) {
+        result[index1] = students[i];
+        index1 += 2;
+        result[index2] = points[i];
+        index2 += 2;
 
+    } var x = 0;
+    var y = 1;
+    var grade = 0;
+    var result2 = "";
+    switch (result[y]) {
+        case 51 - 60:
+            grade = "earned 6";
+            break;
+        case 61 - 70:
+            grade = "earned 7";
+            break;
+        case 71 - 80:
+            grade = "earned 8";
+            break;
+        case 81 - 90:
+            grade = "earned 9";
+            break;
+        case 91 - 100:
+            grade = "earned 10";
+            break;
 
-
-
-
-
-
-
-
+        default:
+            grade = "failed to complete the exam"
+            break;
+    }
+    for (j = 0; j < result.length / 2; j++) {
+        if (grade) {
+            result2 += result[x] + " acquired " + result[y] + " points and " + grade + ". \n \n"
+            x += 2;
+            y += 2;
+        }
+    } return result2;
+}
+console.log(studentPoints(["Micahel", "Anne", "Frank", "Joe", "John", "David", "Mark", "Bill"], [50, 39, 63, 72, 99, 51, 83, 59]));
 
 
 /*
@@ -127,7 +165,9 @@ Output: 2350000
 ======================================================================================
 */
 
-
+function loopAddEven (elements) {
+    
+}
 
 
 

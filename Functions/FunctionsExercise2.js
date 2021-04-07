@@ -334,6 +334,10 @@ function humanizeNumber(num) {
     result = "";
     if (num == 11) {
         result = num + "th";
+    } else if (num == 12) {
+        result = num + "th";
+    } else if (num == 13) {
+        result = num + "th";
     } else if ((num % 10) == 1) {
         result = num + "st";
     } else if ((num % 10) == 2) {
@@ -347,4 +351,4 @@ function humanizeNumber(num) {
     } return result;
 }
 
-console.log(humanizeNumber(11));
+console.log(humanizeNumber(101));
