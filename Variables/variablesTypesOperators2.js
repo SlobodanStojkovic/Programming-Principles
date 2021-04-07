@@ -5,7 +5,7 @@ var a = 22;
 
 var b = true;
 
-var c = a && b; //i a i b moraju da budu tačni da bi rezultat bio tačan;
+var c = a && b; //both a and b needs to be true so that result be true
 
 // true && true = true 
 // false && true = false
@@ -19,22 +19,23 @@ var c = a && b; //i a i b moraju da budu tačni da bi rezultat bio tačan;
 // false || false = false
 
 
-//&& - i
-// || - ili
+// && - AND
+// || - OR
 
 
 console.log(!!0)
 
 
 
-false && false || true && true //daju na kraju true, jer trazimo na netu precedence, vaznost, i gledamo sta se prvo radi pa onda na osnovu toga odredjujemo, tj radimo zadatak
+false && false || true && true //This gives out TRUE, because we search online for PRECEDENCE, importance, and based on that we see what is done first so that we can determine how to complete a task
+
 
 
 var isLoggedIn = true;
 
-var c = isLoggedIn && 'ulogovan je'; // ako je prva vrednost true, dodelice se druga vrednost
+var c = isLoggedIn && 'logged'; // if first value is TRUE, it will assign second value
 
-var d = isLoggedIn || 'neka vrednost'  // dodeljuje se neka vrednost samo ako je prva vrednost negativna
+var d = isLoggedIn || 'some value'  // assign some value ONLY if first value is negative
 
 console.log(c)
 console.log(d)
@@ -53,7 +54,7 @@ console.log(total)
 
 
 var cart = 0;
-var total = cart || 'prazna korpa';
+var total = cart || 'empty cart';
 console.log(total)
 
 
@@ -98,7 +99,7 @@ var nekavrednost = 45 + "nesto"
 console.log(nekavrednost)               //js pokusava da svede na istu vrednost, pa pretvara 45 u string i rezultat je 45nesto
 
 
-var nekavrednost = 2 - "1"//js zna da je minus samo za brojeve i zato 1 pretvara u broj pa funkcionise kao  broj iako je string
+var nekavrednost = 2 - "1"//js zna da je minus samo za brojeve i zato 1 pretvara u broj pa funkcionise kao broj iako je string
 console.log(nekavrednost)  
 
 
@@ -135,15 +136,10 @@ console.log(a)
 
 
 var c;
-console.log(typeof typeof c) //uvek vraca typeof u stringu
+console.log(typeof typeof c) //always returns typeof typeof in string
 
 
 var s = "1s"; s++;
 console.log(s)
-
-
-
-
-
 
 //blocks > statements > expressions

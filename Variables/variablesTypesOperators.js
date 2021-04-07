@@ -1,4 +1,4 @@
-//zadatak 1 - Iskopiramo tekst zadatka
+//Task 1
 
 var boja = 'plava';
 var color = 'blue';
@@ -25,12 +25,12 @@ var ostatak = 31%2
 console.log(ostatak);
 
 
-//a++ povecava vrednost za 1; a++ je a=a+1, za a se odredjuje nova vrednost koja je veca za 1
+//a++ increases value by 1; a++ is a=a+1, for a we define new value that is larger for 1
 var a = 2;
 a++;
 console.log(a);
 
-//a-- smanjuje vrednost za 1
+//a-- decreases value by 1
 
 
 
@@ -45,7 +45,7 @@ a*=3;
 
 a-=2;
 
-console.log(a); //dace nam rezultat 16
+console.log(a); //gives result 16
 
 
 
@@ -68,11 +68,11 @@ if (numberOfLikes) === 23) {
 }
 
 // blocks > statements > expressions
-// sve sto se nalazi unutar Vitičastih zagrada je BLOK KODA
+// everything inside curly brackeds is called BLOCK OF CODE
 
 
-//Imamo opciju AutoSave
-//U HTML-u se za razdvajanje reči koristi srednja crta npr u basic-elements.
+//We have AutoSave option
+//In HTML for word separation we use "-" like in for example basic-elements.
 
 
 
