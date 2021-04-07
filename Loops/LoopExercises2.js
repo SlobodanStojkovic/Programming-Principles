@@ -247,12 +247,15 @@ Output: [2, -2, 33, 78, 12, 5, 8]
 var a = [2, -2, 33, 12, 5, 8];
 var p = 3;
 var e = 78;
+var newArray = [];
 
 
-if (p > a.length) {
-    console.log("error");
-} else {
-    a[p] = e;
-    console.log(a);
+for (var i = 0; i < a.length; i++) {
+    if (i === p) {
+        newArray[newArray.length] = e;
+        newArray[newArray.length] = a[i];
+    } else {
+        newArray[newArray.length] = a[i];
+    }
 }
-
+console.log(newArray);

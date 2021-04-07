@@ -18,6 +18,8 @@ parseInt(Infinity)       //NaN
 parseInt(-Infinity)      //NaN
 parseInt(null)           //NaN
 parseInt("")             //NaN
+parseInt(false)          //NaN
+
 
 
 parseFloat("10")        //10
@@ -33,6 +35,9 @@ parseFloat(Infinity)    //Infinity
 parseFloat(-Infinity)   //-Infinity
 parseFloat(null)        //NaN
 parseFloat("")          //NaN
+parseFloat(false)       //NaN
+
+
 
 
 isNaN(Infinity)     //false
@@ -48,6 +53,7 @@ isNaN('')           //false
 isNaN(true)         //false
 isNaN(null)         //false
 isNaN("")           //false
+isNaN(false)        //false
 
 isNaN('Hello')      //true
 isNaN('2005/12/12') //true
@@ -56,11 +62,13 @@ isNaN('NaN')        //true
 isNaN(NaN)          //true
 isNaN(0 / 0)        //true
 isNaN(undefined)    //true
+      
+ 
 
 
 
 
-
+       isFinite(false)          //true
        isFinite(null)           //true
        isFinite("")             //true
        isFinite(0)              //true
@@ -84,7 +92,7 @@ Number.isFinite(0 / 0)          //false
 
 
 
-
+console.log(typeof (false));        //boolean
 console.log(typeof (null));         //object
 console.log(typeof (undefined));    //undefined
 console.log(typeof (Infinity));     //number

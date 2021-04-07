@@ -13,19 +13,18 @@ Output: [1, 21, 42, 1000]
 var array = ["1", "21", undefined, "42", "1e+3", Infinity];
 
 function isNumber(array) {
-    var output = [];
+    var result = [];
     var j = 0;
     for (var i = 0; i < array.length; i++) {
         var parse = parseFloat(array[i]);
         if (isFinite(parse)) {
-            output[j] = parse;
+            result[j] = parse;
             j++;
         }
-    } return output;
+    } return result
 }
 
-var result = isNumber(array);
-console.log(result);
+console.log(isNumber(array));
 
 
 console.log(parseFloat(Infinity)); //Infinity
@@ -93,11 +92,17 @@ function joinElements(array) {
 console.log(joinElements(array));
 
 
+//Another way
 
-console.log(isFinite(false)); //true
-console.log(isFinite(null)); //true
-console.log(isNaN("")); 
-
+function joinElements(array) {
+    var result = "";
+    for (var i = 0; i < array.length; i++) {
+        if (!isNaN(array[i]) && array[i] != null) { //!isNaN throws out NaN, "", undefined from array, while != null throws out null from array
+            result += array[i];
+        }
+    } return result;
+}
+console.log(joinElements([NaN, 0, 15, false, -22, "", undefined, 47, null]));
 
 
 /*
@@ -126,6 +131,38 @@ function isFalsy(array) {
 console.log(isFalsy(array));
 
 
+//Another way of solving it
+
+//Input: [NaN, 0, 15, false, -22, "", undefined, 47, null]
+//Output: [15, -22, 47]   ===>>> NaN, false, "", undefined, null needs to be thrown out from array
+
+function throwoutFalsy (array) {
+    var result = [];
+    var index = 0;
+    for(i = 0; i < array.length; i++) {
+        if(parseFloat(array[i])) {
+            result[index] = array[i];
+            index ++;
+        }
+    } return result;
+}
+console.log(throwoutFalsy([NaN, 0, 15, false, -22, "", undefined, 47, null]));
+
+
+
+
+
+//We can shorten this code because instead of var index = 0; and result[index]; and result ++ we use only result[result.length]
+
+function throwoutFalsy (array) {
+    var result = [];
+    for(i = 0; i < array.length; i++) {
+        if(parseFloat(array[i])) {
+            result[result.length] = array[i];
+        }
+    } return result;
+}
+console.log(throwoutFalsy([NaN, 0, 15, false, -22, "", undefined, 47, null]));
 
 
 /*
@@ -152,6 +189,24 @@ function numberOfIntegers(array) {
 console.log(numberOfIntegers(array));
 
 
+
+
+
+//Another way of solving it
+
+function numberOfIntegers (array) {
+    var count = 0;
+    for (i = 0; i < array.length; i++) {
+        if(parseInt(array[i]) === parseFloat(array[i])) {   //when in IF => parseInt gives out [23, 15, -22, 4, 7] when in IF => parseFloat gives out [23.1, 15, -22.5, 4, 7]
+            count++;
+        }
+    } return count;
+}
+console.log(numberOfIntegers([NaN, 23.1, 15, false, -22.5, "", 4, 7, null]));
+
+
+
+
 /*
 ======================================================================================
 5. Write a program that calculates a number of float values in the array.
@@ -174,3 +229,20 @@ function numberOfFloats(array) {
 }
 
 console.log(numberOfFloats(array));
+
+
+//Another way of solving it
+
+//parseFloat(array[i] = [NaN, 23, 15, NaN, -22, NaN, 4, 7, NaN]
+//parseInt(array[i]) = [NaN, 23.1, 15, NaN, -22.5, NaN, 4, 7, NaN] 
+
+function numberOfFloatValues (array) {
+    var count = 0;
+    for(i = 0; i < array.length; i++) {
+        if((parseFloat(array[i]) !== parseInt(array[i])) && !isNaN(parseFloat(array[i]))) { 
+            count++;                                                                                                      
+        }
+    } return count;
+}
+console.log(numberOfFloatValues([NaN, 23.1, 15, false, -22.5, "", 4, 7, null]));
+
