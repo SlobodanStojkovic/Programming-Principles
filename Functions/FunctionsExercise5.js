@@ -73,6 +73,8 @@ Bill acquired 59 points and earned 6. Micahel acquired 50 points and failed to c
 ======================================================================================
 */
 
+
+
 function studentPoints(students, points) {
     var result = [];
     var index1 = 0;
@@ -87,28 +89,70 @@ function studentPoints(students, points) {
     var y = 1;
     var grade = 0;
     var result2 = "";
-    switch (result[y]) {
-        case 51 - 60:
-            grade = "earned 6";
-            break;
-        case 61 - 70:
-            grade = "earned 7";
-            break;
-        case 71 - 80:
-            grade = "earned 8";
-            break;
-        case 81 - 90:
-            grade = "earned 9";
-            break;
-        case 91 - 100:
-            grade = "earned 10";
-            break;
-
-        default:
-            grade = "failed to complete the exam"
-            break;
-    }
     for (j = 0; j < result.length / 2; j++) {
+        if (result[y] > 50 && result[y] < 60) {
+            grade = "earned 6";
+        } else if (result[y] > 60 && result[y] < 70) {
+            grade = "earned 7";
+        } else if (result[y] > 70 && result[y] < 80) {
+            grade = "earned 8";
+        } else if (result[y] > 80 && result[y] < 90) {
+            grade = "earned 9";
+        } else if (result[y] > 90 && result[y] < 101) {
+            grade = "earned 10";
+        } else {
+            grade = "failed to complete the exam"
+        }
+        if (grade) {
+            result2 += result[x] + " acquired " + result[y] + " points and " + grade + ". \n \n"
+            x += 2;
+            y += 2;
+        }
+    } return result2;
+}
+console.log(studentPoints(["Micahel", "Anne", "Frank", "Joe", "John", "David", "Mark", "Bill"], [50, 39, 63, 72, 99, 51, 83, 59]));
+
+
+
+//With SWITCH statement vvv
+
+function studentPoints(students, points) {
+    var result = [];
+    var index1 = 0;
+    var index2 = 1;
+    for (i = 0; i < students.length; i++) {
+        result[index1] = students[i];
+        index1 += 2;
+        result[index2] = points[i];
+        index2 += 2;
+
+    } var x = 0;
+    var y = 1;
+    var grade = 0;
+    var result2 = "";
+    for (j = 0; j < result.length / 2; j++) {
+        switch (true) {
+            case (result[y] > 50 && result[y] < 60):
+                grade = "earned 6";
+                break;
+            case (result[y] > 60 && result[y] < 70):
+                grade = "earned 7";
+                break;
+            case (result[y] > 70 && result[y] < 80):
+                grade = "earned 8";
+                break;
+            case (result[y] > 80 && result[y] < 90):
+                grade = "earned 9";
+                break;
+            case (result[y] > 90 && result[y] < 101):
+                grade = "earned 10";
+                break;
+
+            default:
+                grade = "failed to complete the exam"
+                break;
+        }
+
         if (grade) {
             result2 += result[x] + " acquired " + result[y] + " points and " + grade + ". \n \n"
             x += 2;
@@ -165,14 +209,26 @@ Output: 2350000
 ======================================================================================
 */
 
-function loopAddEven (elements) {
-    
+
+function loopAddEven(even, odd) {
+    var result = 0;
+    var sumEven = 0;
+    var sumOdd = 0;
+    for (i = 0; i <= even; i++) {
+        if (i % 2 == 0) {
+
+            sumEven += i;
+            console.log(i);
+        }
+    } for (j = 1; j <= odd; j++) {
+        if (j % 2 != 0) {
+            sumOdd += j;
+            console.log(j);
+        }
+    } result = (sumEven - sumOdd) * 12.5;
+    return result;
 }
-
-
-
-
-
+console.log(loopAddEven(1000, 500));
 
 
 /*
@@ -186,13 +242,15 @@ Output: AnStJoJoDaMa
 ======================================================================================
 */
 
-
-
-
-
-
-
-
+function make2LetterString(array) {
+    var result = "";
+    for (i = 0; i < array.length; i++) {
+        if (array[i].length >= 2) {
+            result += array[i].slice(0, 2);     //.slice(0, 2); prints only the first two letters
+        }
+    } return result;
+}
+console.log(make2LetterString(["M", "Anne", 12, "Steve", "Joe", "John", "David", "Mark", true, "A"]));
 
 
 /*
@@ -203,14 +261,17 @@ Output: ygolonhceT fo etutitsnI edargleB
 ======================================================================================
 */
 
+function revertCharacters(string) {
+    var result = [];
+    for (i = 1; i < string.length + 1; i++) {
+        if (typeof string === "string") {
+            result += string[string.length - i];
+        }
+    } return result;
+}
+console.log(revertCharacters("Belgrade Institute of Technology"))
 
-
-
-
-
-
-
-
+console.log(revertCharacters("ANA voli Milovana"))
 
 /*
 ======================================================================================
@@ -220,12 +281,23 @@ combinations, as well. (E.g. (1.2),(2,1) is allowed, but not (1,1), (2,2)...).
 ======================================================================================
 */
 
-
-
-
-
-
-
+function allCombinations(num1, num2) {
+    var result = "";
+    max = num2;
+    min = num1;
+    for (i = 0; i < max; i++) {
+        if (num1 <= max) {
+            result += num1 + "," + "\n"
+            num1++;
+        } for (j = 0; j < max; j++) {
+            if (num2 > 0) {
+                result += num2 + "," + "\n";
+                num2--;
+            }
+        }
+    } return result;
+}
+console.log(allCombinations(1, 7));
 
 
 /*
