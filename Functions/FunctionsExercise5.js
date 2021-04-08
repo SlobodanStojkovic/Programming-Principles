@@ -269,9 +269,25 @@ function revertCharacters(string) {
         }
     } return result;
 }
-console.log(revertCharacters("Belgrade Institute of Technology"))
+console.log(revertCharacters("Belgrade Institute of Technology"));
 
-console.log(revertCharacters("ANA voli Milovana"))
+
+
+
+//Dario's way of solving this assignment
+
+function revertCharacters(string) {
+    var result = [];
+    if (typeof string !== "string") {
+        return "Please insert string";
+    }
+    for (i = string.length - 1; i >= 0; i--)
+        result += string[i];
+    return result;
+}
+
+console.log(revertCharacters("Belgrade Institute of Technology"));
+
 
 /*
 ======================================================================================
@@ -282,20 +298,40 @@ combinations, as well. (E.g. (1.2),(2,1) is allowed, but not (1,1), (2,2)...).
 */
 
 function allCombinations(num1, num2) {
-    var result = "";
-    max = num2;
-    min = num1;
-    for (i = 0; i < max; i++) {
-        if (num1 <= max) {
-            result += num1 + "," + "\n"
-            num1++;
-        } for (j = 0; j < max; j++) {
-            if (num2 > 0) {
-                result += num2 + "," + "\n";
-                num2--;
+    var result = [];
+    var count = 0;
+
+    for (i = 1; i <= num2; i++) {
+        for (j = 1; j <= num2; j++) {
+            if (i !== j) {
+                count++;
+                result[result.length] = [i, j];
             }
         }
-    } return result;
+    } return [result, "Number of possible combinations is " + count];
+}
+console.log(allCombinations(1, 7));
+
+
+
+
+//The function UP is made presuming that first number is lesser than second number. The function DOWN changes their places if first number is larger than second number.
+
+function allCombinations(num1, num2) {
+    var result = [];
+    var count = 0;
+    if (num1 > num2) {
+        [num1, num2] = [num2, num1]
+        console.log(num1, num2);
+    }
+    for (i = 1; i <= num2; i++) {
+        for (j = 1; j <= num2; j++) {
+            if (i !== j) {
+                count++;
+                result[result.length] = [i, j];
+            }
+        }
+    } return [result, "Number of possible combinations is " + count];
 }
 console.log(allCombinations(1, 7));
 
@@ -308,10 +344,26 @@ Output: true  | false
 ======================================================================================
 */
 
+function isPrime(num) {
+    var result;
+    if (num < 0) {
+        return "Please use positive numbers."
+    }
+    if (num === 1) {
+        result = "The number 1 is not a prime nor a composite number.";
 
-
-
-
+    } else if (num === 2) {
+        result = "The number 2 is a prime number.";
+    }
+    for (i = 2; i < num; i++) {
+        if (num % i === 0) {
+            result = "The number " + num + " is a composite number.";
+            break;
+        } else result = "The number " + num + " is a prime number.";
+    } return result;
+}
+console.log(isPrime(17));
+console.log(isPrime(15));
 
 
 
@@ -324,12 +376,49 @@ Output: true | false | true
 */
 
 
+function removeBlankSpaces(string) {
+    var result = [];
+    for (i = 0; i < string.length; i++) {
+        if (string[i] != " ") {
+            result += string[i];
+        }
+    } return result;
+}
+console.log(removeBlankSpaces("Remove    all     blank   spaces"));
 
 
 
 
 
+function isPalindrome(string) {
+    var resultWithBlanks = [];
+    if (typeof string !== "string") {
+        return "Please insert string";
+    }
+    for (i = string.length - 1; i >= 0; i--) {
+        resultWithBlanks += string[i];
+    } 
+    var resultWithoutBlanks = [];                                   
+    for (i = 0; i < resultWithBlanks.length; i++) {                   
+        if (resultWithBlanks[i] != " ") {                             
+            resultWithoutBlanks += resultWithBlanks[i];                               
+        }  
+        var result = "";
+        for (i = 0; i < resultWithBlanks.length; i++) {
+            for (var j = (resultWithBlanks.length - 1); j >= 0; j--) {
+                if (resultWithBlanks[i] == resultWithBlanks[j]) {
+                    result = true;
+                } else {
+                    result = false;
+                }
+            }
+        }                                                    
+    } return result;                                              
+}
 
+console.log(isPalindrome("eye"));
+console.log(isPalindrome("Geek"));
+console.log(isPalindrome("a nut for a jar of tuna"));
 
 /*
 ======================================================================================
@@ -340,3 +429,18 @@ Input:  192 42 | 81 9
 Output: 6      | 9
 ======================================================================================
 */
+
+function greatestDivisor(num1, num2) {
+    var divisors = [];
+    var max;
+    if (num1 > num2) {
+        max = num1;
+    } else max = num2;
+    for (i = 1; i < max; i++) {
+        if (num1 % i === 0 && num2 % i === 0) {
+            result = "Greatest common divisor for given two integers is " + i + ".";
+        }
+    } return result;
+}
+console.log(greatestDivisor(192, 42));
+console.log(greatestDivisor(81, 9));
