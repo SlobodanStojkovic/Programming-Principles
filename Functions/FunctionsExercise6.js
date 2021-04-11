@@ -482,7 +482,7 @@ function printListOfStringsInRectangularFrame(array) {
     var result = "";
     var count = 0;
     var maxChar = 0;
-    var maxStars = "*****";
+    var maxStars = "";
     var row = "**" + maxStars + "**";
     for (i = 0; i < array.length; i++) {
         while (array[i].length < maxChar) {
@@ -502,5 +502,50 @@ function printListOfStringsInRectangularFrame(array) {
     return row + result + "\n" + row;
 }
 console.log(printListOfStringsInRectangularFrame(["Hello", "World", "in", "a", "frame"]));
+
+
+
+
+
+
+function printListOfStringsInRectangularFrame(array) {
+    var result = "";
+    var count = 0;
+    var maxChar = 0;
+    var maxStars = "*";
+
+    for (i = 0; i < array.length; i++) {
+        while (array[i].length < maxChar) {
+            array[i] += " ";
+        }
+        result += "\n* " + array[i] + " *";
+
+        for (ј = 0; ј < array.length; ј++) {
+            if (array[ј].length > maxChar) {
+                maxChar = array[ј].length;
+            }
+        }
+    }
+
+    while (maxChar > 0) {
+        maxStars += "*";
+        maxChar--;
+        var row = "**" + maxStars + "*";
+
+    } return row + result + "\n" + row;
+}
+console.log(printListOfStringsInRectangularFrame(["Hello", "TECHNOLOGY", "World", "in", "a", "frame"]));
+
+
+
+
+
+
+
+
+
+
+
+
 
 
