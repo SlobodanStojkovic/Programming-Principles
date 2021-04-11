@@ -86,6 +86,7 @@ console.log(filterFalsy([NaN, 0, 15, false, -22, '', undefined, 47, null]))
 ======================================================================================
 */
 
+
 function reverseNumber(number) {
     var result = 0;
     while (number != 0) {
@@ -243,6 +244,31 @@ function hideEmail(email) {
 console.log(hideEmail("myemailaddress@bgit.rs"));
 
 
+//Ivan Balic's way of solving this assignment
+
+
+function hideEmail(email) {
+    var firstThree = "";
+    var rest = '';
+    var etindex;
+    for (i = 0; i < email.length; i++) {
+        if (i < 3) {
+            firstThree += email[i];
+        } else {
+            if(email[i] === '@') {
+                etindex = i;
+            }
+            if(etindex !== undefined) {
+                rest += email[i];
+            }
+        }
+    }
+    return firstThree + '...' + rest;
+}
+console.log(hideEmail("myemailaddress@bgit.rs"));
+
+
+
 /*
 ======================================================================================
 10. Write a program to find the most frequent item of an array.
@@ -253,7 +279,6 @@ console.log(hideEmail("myemailaddress@bgit.rs"));
 
 function mostFreequent(array) {
     var result;
-    var count = 0;
     var max = 0;
     var mostfreq = 0;
 

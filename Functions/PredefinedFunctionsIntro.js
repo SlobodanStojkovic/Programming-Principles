@@ -19,6 +19,7 @@ parseInt(-Infinity)      //NaN
 parseInt(null)           //NaN
 parseInt("")             //NaN
 parseInt(false)          //NaN
+parseInt(NaN)            //NaN 
 
 
 
@@ -36,7 +37,7 @@ parseFloat(-Infinity)   //-Infinity
 parseFloat(null)        //NaN
 parseFloat("")          //NaN
 parseFloat(false)       //NaN
-
+parseFloat(NaN)         //NaN    
 
 
 
@@ -87,7 +88,7 @@ Number.isFinite(0 / 0)          //false
        isFinite(undefined)      //false
        isFinite(Infinity)       //false
        isFinite(-Infinity)      //false
-
+       isFinite(NaN)            //false
 
 
 

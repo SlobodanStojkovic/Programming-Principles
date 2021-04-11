@@ -315,7 +315,9 @@ console.log(allCombinations(1, 7));
 
 
 
-//The function UP is made presuming that first number is lesser than second number. The function DOWN changes their places if first number is larger than second number.
+/*The function UP is made presuming that first number is lesser than second number. 
+The function DOWN vvv changes their places if first number is larger than second number.*/
+
 
 function allCombinations(num1, num2) {
     var result = [];
