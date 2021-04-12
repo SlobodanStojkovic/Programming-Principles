@@ -92,18 +92,13 @@ console.log(returnArrayOfDigits(5120));
 function multiplicationTable(num) {
     var result = "";
     for (i = 1; i <= num; i++) {
-        result += (i * num) + " \n"
-
         for (j = 1; j <= num; j++) {
             var j;
-            result += (i * j) + " ";
-        }
+            result += (i * j) + " "; 
+        } result += "\n"
     } return result;
 }
-console.log(multiplicationTable(5));
-
-
-
+console.log(multiplicationTable(12));
 
 
 /*
@@ -111,6 +106,7 @@ console.log(multiplicationTable(5));
 6. Write a function to input temperature in Centigrade and convert to Fahrenheit.
 ======================================================================================
 */
+
 
 function centrigradeToFahrenheit(temperature) {
     var result;
@@ -510,13 +506,13 @@ console.log(printListOfStringsInRectangularFrame(["Hello", "World", "in", "a", "
 
 function printListOfStringsInRectangularFrame(array) {
     var result = "";
-    var count = 0;
     var maxChar = 0;
     var maxStars = "*";
 
     for (i = 0; i < array.length; i++) {
         while (array[i].length < maxChar) {
             array[i] += " ";
+            console.log(i);
         }
         result += "\n* " + array[i] + " *";
 
