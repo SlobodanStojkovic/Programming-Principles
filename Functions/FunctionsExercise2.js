@@ -288,12 +288,24 @@ function convertArrayToString(array) {
         var float = parseFloat(array[i]);
 
         if (int == float || isFinite(int)) {
-            result += array[i];
+            result[result.length] = float;
         }
     } return result;
 }
 
-console.log(convertArrayToString(arr));     //121421e+3
+console.log(convertArrayToString(arr));
+
+//Or like this vvv
+
+function convertArrayToString(array) {
+    var result = [];
+    for(i = 0; i < array.length; i++) {
+        if(parseFloat(array[i]) && isFinite(parseFloat(array[i]))) {
+            result[result.length] = parseFloat(array[i]);
+        }
+    } return result;
+}
+console.log(convertArrayToString(["1", "21", undefined, "42", "1e+3", Infinity]));
 
 
 

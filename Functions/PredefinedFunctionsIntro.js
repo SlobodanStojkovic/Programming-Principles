@@ -13,6 +13,7 @@ parseInt("10", 8)        //8
 parseInt("0x10")         //16
 parseInt("10", 16)       //16
 parseInt(0)              //0
+parseInt(1e+3)           //1000
 parseInt(undefined)      //NaN
 parseInt(Infinity)       //NaN
 parseInt(-Infinity)      //NaN
@@ -29,6 +30,7 @@ parseFloat("10.33")     //10.33
 parseFloat("34 45 66")  //34
 parseFloat("   60   ")  //60
 parseFloat("40 years")  //40
+parseFloat(1e+3)        //1000
 parseFloat("He was 40") //NaN
 parseFloat(0)           //0
 parseFloat(undefined)   //NaN
@@ -55,6 +57,7 @@ isNaN(true)         //false
 isNaN(null)         //false
 isNaN("")           //false
 isNaN(false)        //false
+isNaN(1e+3)         //false 
 
 isNaN('Hello')      //true
 isNaN('2005/12/12') //true
@@ -63,7 +66,7 @@ isNaN('NaN')        //true
 isNaN(NaN)          //true
 isNaN(0 / 0)        //true
 isNaN(undefined)    //true
-      
+    
  
 
 
@@ -79,6 +82,7 @@ Number.isFinite(123)            //true
 Number.isFinite(-1.23)          //true
 Number.isFinite(5-2)            //true
 Number.isFinite(0)              //true
+       isFinite(1e+3)           //true
 Number.isFinite('123')          //false
 Number.isFinite('Hello')        //false
 Number.isFinite('2005/12/12')   //false

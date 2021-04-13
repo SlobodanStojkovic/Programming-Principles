@@ -512,7 +512,7 @@ function printListOfStringsInRectangularFrame(array) {
     for (i = 0; i < array.length; i++) {
         while (array[i].length < maxChar) {
             array[i] += " ";
-            console.log(i);
+            console.log(array[i]);
         }
         result += "\n* " + array[i] + " *";
 
@@ -530,14 +530,9 @@ function printListOfStringsInRectangularFrame(array) {
 
     } return row + result + "\n" + row;
 }
+console.log(printListOfStringsInRectangularFrame(["My", "name", "is", "Slobodan", "Stojkovic"]));
+
 console.log(printListOfStringsInRectangularFrame(["Hello", "TECHNOLOGY", "World", "in", "a", "frame"]));
-
-
-
-
-
-
-
 
 
 
