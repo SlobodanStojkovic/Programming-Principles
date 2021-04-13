@@ -172,15 +172,25 @@ Output: [ 2, 10, 12, 16, 22, 24, 26, 30 ]
 ======================================================================================
 */
 
-
-
-
-
-
-
-
-
-
+function sortArrayAndDoubleIt(array) {
+    var result = array;
+    var doubled = [];
+    var swap;
+    for (i = 0; i < array.length - 1; i++) {
+        for (j = 0; j < array.length - 1; j++) {
+            if (array[j] > array[j + 1]) {
+                swap = array[j + 1];
+                array[j + 1] = result[j];
+                result[j] = swap;
+            }
+        }
+    }
+    for (k = 0; k < result.length; k++) {
+        doubled[doubled.length] = result[k] * 2;
+    }
+    return doubled;
+}
+console.log(sortArrayAndDoubleIt([13, 11, 15, 5, 6, 1, 8, 12]));
 
 
 /*
@@ -191,13 +201,20 @@ Output: [ 15, 13, 12, 11, 8, 6, 5, 1 ]
 ======================================================================================
 */
 
-
-
-
-
-
-
-
+function sortDescending(array) {
+    var result = array;
+    var swap;
+    for (i = array.length - 1; i >= 0; i--) {
+        for (j = array.length - 1; j >= 0; j--) {
+            if (array[j] > array[j - 1]) {
+                swap = array[j - 1];
+                array[j-1] = array[j];
+                result[j] = swap;
+            }
+        }
+    } return result;
+}
+console.log(sortDescending([13, 11, 15, 5, 6, 1, 8, 12]));
 
 
 /*
@@ -399,12 +416,12 @@ function isPalindrome(string) {
     }
     for (i = string.length - 1; i >= 0; i--) {
         resultWithBlanks += string[i];
-    } 
-    var resultWithoutBlanks = [];                                   
-    for (i = 0; i < resultWithBlanks.length; i++) {                   
-        if (resultWithBlanks[i] != " ") {                             
-            resultWithoutBlanks += resultWithBlanks[i];                               
-        }  
+    }
+    var resultWithoutBlanks = [];
+    for (i = 0; i < resultWithBlanks.length; i++) {
+        if (resultWithBlanks[i] != " ") {
+            resultWithoutBlanks += resultWithBlanks[i];
+        }
         var result = "";
         for (i = 0; i < resultWithBlanks.length; i++) {
             for (var j = (resultWithBlanks.length - 1); j >= 0; j--) {
@@ -414,8 +431,8 @@ function isPalindrome(string) {
                     result = false;
                 }
             }
-        }                                                    
-    } return result;                                              
+        }
+    } return result;
 }
 
 console.log(isPalindrome("eye"));
