@@ -16,7 +16,9 @@ myFunc();
 console.log(c);
 console.log(j);
 
-
+/*If we want to read more about Variable SCOPE we can see it at this link vvv
+https://www.digitalocean.com/community/tutorials/understanding-hoisting-in-javascript#:~:text=Hoisting%20is%20a%20JavaScript%20mechanism,scope%20is%20global%20or%20local
+*/
 
 
 

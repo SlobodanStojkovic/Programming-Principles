@@ -94,7 +94,7 @@ function multiplicationTable(num) {
     for (i = 1; i <= num; i++) {
         for (j = 1; j <= num; j++) {
             var j;
-            result += (i * j) + " "; 
+            result += (i * j) + " ";
         } result += "\n"
     } return result;
 }
@@ -479,7 +479,7 @@ function printListOfStringsInRectangularFrame(array) {
     var count = 0;
     var maxChar = 0;
     var maxStars = "";
-    var row = "**" + maxStars + "**";
+
     for (i = 0; i < array.length; i++) {
         while (array[i].length < maxChar) {
             array[i] += " "
@@ -488,12 +488,12 @@ function printListOfStringsInRectangularFrame(array) {
         for (j = 0; j < array.length; j++) {
             count++;
             maxChar = count;
-
         } count = 0;
     }
     while (maxChar > 0) {
         maxStars += "*";
         maxChar--;
+        var row = "**" + maxStars + "**";
     }
     return row + result + "\n" + row;
 }
@@ -512,7 +512,6 @@ function printListOfStringsInRectangularFrame(array) {
     for (i = 0; i < array.length; i++) {
         while (array[i].length < maxChar) {
             array[i] += " ";
-            console.log(array[i]);
         }
         result += "\n* " + array[i] + " *";
 
@@ -522,21 +521,10 @@ function printListOfStringsInRectangularFrame(array) {
             }
         }
     }
-
     while (maxChar > 0) {
         maxStars += "*";
         maxChar--;
         var row = "**" + maxStars + "*";
-
     } return row + result + "\n" + row;
 }
 console.log(printListOfStringsInRectangularFrame(["My", "name", "is", "Slobodan", "Stojkovic"]));
-
-console.log(printListOfStringsInRectangularFrame(["Hello", "TECHNOLOGY", "World", "in", "a", "frame"]));
-
-
-
-
-
-
-

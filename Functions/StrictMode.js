@@ -4,6 +4,11 @@
 //Statements => Whole sentence
 //Block => pasus (few sentences)
 
+
+//USE STRICT should be on TOP OF THE SCOPE where we want to use it(can be inside a function, on top of scope)
+
+
+
 var something = 'something'; //declaration statement and expression at the same time
 
 
