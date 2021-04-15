@@ -9,23 +9,40 @@ Output array: [ 9, 5, 11, 4]
 ======================================================================================
 */
 
-var array = [4, 5, 11, 9];
 
-(function (array) {
+var replaceFirstAndLastElement = (function (array) {
+    var result;
     for (i = 0; i < array.length; i++) {
         if (i == 0) {
-            array[0] = array[array.length - 1]
-        } if (i == (array.length - 1)) {
-            array[array.length - 1] = array[0];
+            result = array;
+            first = array[0];
+            result[0] = array[array.length - 1];
+            result[array.length - 1] = first;
         }
-    }
-})();
+    } return result;
+})([4, 5, 11, 9]);
+
+console.log(replaceFirstAndLastElement);
 
 
 
+//Aleksandar Bisevac way of solving this task
 
 
+var output = (function (array) {
+    var result = [];
+    for (var i = 0; i < array.length; i++) {
+        if (i === 0) {
+            result[result.length] = array[array.length - 1];
+        } else if (i === array.length - 1) {
+            result[result.length] = array[0];
+        } else {
+            result[result.length] = array[i];
+        }
+    } return result;
+})([4, 5, 11, 9]);
 
+console.log(output);
 
 
 /*
@@ -37,13 +54,12 @@ Output: 20
 */
 
 
+var surfaceArea = (function (a, b) {
+    var result = a * b;
+    return result;
+})(4, 5);
 
-
-
-
-
-
-
+console.log(surfaceArea);
 
 
 /*
@@ -55,12 +71,21 @@ Output: progra**ing, 2
 ======================================================================================
 */
 
+var replaceAllLettersM = (function (string) {
+    var output = "";
+    count = 0;
+    for (i = 0; i < string.length; i++) {
+        if (string[i] === "m" || string[i] === "M") {
+            output += "*"; 
+            count++;
+        } else {
+            output += string[i];
+        }
+    } return [output, count];
 
+})("prograMming");
 
-
-
-
-
+console.log(replaceAllLettersM);
 
 
 /*
@@ -73,8 +98,12 @@ Output: pera.peric@gmail.com
 */
 
 
+var formEmail = (function (name, surname){
+    var result = name + "." + surname + "@gmail.com";
+    return result;
+})("pera", "peric");
 
-
+console.log(formEmail);
 
 
 /*
@@ -85,8 +114,6 @@ Input: 034
 Output: 28
 ======================================================================================
 */
-
-
 
 
 
