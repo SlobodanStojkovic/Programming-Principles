@@ -76,7 +76,7 @@ var replaceAllLettersM = (function (string) {
     count = 0;
     for (i = 0; i < string.length; i++) {
         if (string[i] === "m" || string[i] === "M") {
-            output += "*"; 
+            output += "*";
             count++;
         } else {
             output += string[i];
@@ -98,7 +98,7 @@ Output: pera.peric@gmail.com
 */
 
 
-var formEmail = (function (name, surname){
+var formEmail = (function (name, surname) {
     var result = name + "." + surname + "@gmail.com";
     return result;
 })("pera", "peric");
@@ -116,6 +116,20 @@ Output: 28
 */
 
 
+var calculateDecimalValueFromOctal = (function (octal) {
+    var result = 0;
+    var temp = octal;
+    var base = 1;
+    while (temp) {
+        var lastDigit = temp % 10;
+        temp = Math.floor(temp / 10);
+        result += lastDigit * base;
+        base = base * 8;
+    } return result;
+
+})(034);
+
+console.log(calculateDecimalValueFromOctal);        //needs to work when first number is 0
 
 
 /*
@@ -147,3 +161,14 @@ Input: [2, 8, 11, 4, 9, 3], callback function checks if the number is odd
 Output: [11, 9, 3]
 ======================================================================================
 */
+
+var oddArray = (function (array) {
+    var result = [];
+    for (i = 0; i < array.length; i++) {
+        if (array[i] % 2 !== 0) {
+            result[result.length] = array[i];
+        }
+    } return result;
+})([2, 8, 11, 4, 9, 3]);
+
+console.log(oddArray);
