@@ -148,8 +148,22 @@ Output: Your password is cool!
 */
 
 
+var checkPassword = (function (password) {
+    var result = "";
+    oneNumber = false;
+    for (i = 0; i <= password.length; i++) {
+        if (password.length >= 6 && isFinite(password[i]) === true) {
+            oneNumber = true;
+        }
+        if (oneNumber === true) {
+            result = "Your password is cool!"
+        } else {
+            result = "Your password is invalid!"
+        }
+    } return result;
+})("JSGuru123");
 
-
+console.log(checkPassword);
 
 
 
