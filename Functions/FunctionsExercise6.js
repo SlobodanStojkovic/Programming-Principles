@@ -474,6 +474,7 @@ For example the list ["Hello", "World", "in", "a", "frame"] gets printed as:
 ======================================================================================
 */
 
+
 function printListOfStringsInRectangularFrame(array) {
     var result = "";
     var count = 0;
@@ -510,16 +511,15 @@ function printListOfStringsInRectangularFrame(array) {
     var maxStars = "*";
 
     for (i = 0; i < array.length; i++) {
-        while (array[i].length < maxChar) {
-            array[i] += " ";
-        }
-        result += "\n* " + array[i] + " *";
-
         for (ј = 0; ј < array.length; ј++) {
             if (array[ј].length > maxChar) {
                 maxChar = array[ј].length;
             }
         }
+        while (array[i].length < maxChar) {
+            array[i] += " ";
+        }
+        result += "\n* " + array[i] + " *";
     }
     while (maxChar > 0) {
         maxStars += "*";
@@ -528,3 +528,65 @@ function printListOfStringsInRectangularFrame(array) {
     } return row + result + "\n" + row;
 }
 console.log(printListOfStringsInRectangularFrame(["My", "name", "is", "Slobodan", "Stojkovic"]));
+
+
+
+
+//Dario Stamenkovic way of solving this assignment vvv
+
+
+function makeSquare(array) {
+    var maxLength = 0;
+    var topAndBottomLength = 0;
+    var topAndBottomString = "";
+    var middlePart = "";
+    var square = "";
+    
+
+    function generateString(stringLength, char) {
+        var resultString = "";
+        for(var j = 0; j < stringLength; j++) {
+            resultString += char;
+        }
+        return resultString;
+    }
+
+    //find length of the longest word 
+    for (var i = 0; i < array.length; i++) {
+        var word = array[i];                //this is done so the code can be more readable
+        if (word.length > maxLength) {
+            maxLength = word.length;
+        }
+    }
+
+    topAndBottomLength = maxLength + 4;
+
+    //create top and bottom string
+    for (var j = 0; j < maxLength; j++) {
+        topAndBottomString = generateString(topAndBottomLength, "*");
+    }
+
+
+    //create middle part
+    for (var k = 0; k < array.length; k++) {
+        var spaceLength = maxLength - array[k].length;
+        var spaceString = generateString(spaceLength, " ");
+        middlePart += "* " + array[k] + spaceString + " *" + "\n";
+    }
+
+    //make square
+    square = topAndBottomString + "\n" + middlePart + topAndBottomString;
+
+    return square;
+}
+
+
+
+var arrayExample = ["Hello", "World", "in", "a", "frame"];
+
+var result = makeSquare(arrayExample);
+
+console.log(result);
+
+
+
