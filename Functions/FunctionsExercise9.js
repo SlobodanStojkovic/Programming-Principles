@@ -38,11 +38,11 @@ Output: “Programming in ** is super interesting!”
 
 function replaceJSWithStars(string) {           //This function replaces string "JS" in each string whenever they are found
     var result = "";
-    for(var i = 0; i < string.length; i++) {
-        if(string[i] != "J" && string[i] != "S") {
+    for (var i = 0; i < string.length; i++) {
+        if (string[i] != "J" && string[i] != "S") {
             result += string[i];
-            for(var j = i; j < i + 2; j++) {
-                if(string[j] == "J" && string[j+1] == "S") {
+            for (var j = i; j < i + 2; j++) {
+                if (string[j] == "J" && string[j + 1] == "S") {
                     result += "**";
                 }
             }
@@ -78,9 +78,26 @@ Output: “Good morning”
 */
 
 
+function insertCharacterOnPosition(string, position, character) {
+    var result = "";
+    for (var i = 0; i < string.length; i++) {
+        if (i < (position - 1)) {
+            result += string[i];
+        } else if (i == (position - 1)) {
+            result += character;
+            result += string[i];
+            //we need to write result += string[i]; because after it includes character on that position it needs to also   add a character that was previously on that position
+        } else {
+            result += string[i];
+        }
+    }
+    if (position > string.length) {         //this IF code includes case when we want to add character on the end of string
+        result += character;
 
-
-
+    } return result;
+}
+console.log(insertCharacterOnPosition("Goo morning", 4, "d"));
+console.log(insertCharacterOnPosition("This is a funcio", 17, "n"));
 
 
 /*
