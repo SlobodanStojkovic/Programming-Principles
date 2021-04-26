@@ -108,8 +108,15 @@ Output: “Good morning!”
 ======================================================================================
 */
 
-
-
+function deleteCharacterFromPosition (string, position) {
+    var result = "";
+    for(var i = 0; i < string.length; i++) {
+        if(i != position) {
+            result += string[i];
+        }
+    } return result;
+}
+console.log(deleteCharacterFromPosition("Goodd morning!", 3))
 
 
 
