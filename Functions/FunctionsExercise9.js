@@ -108,10 +108,10 @@ Output: “Good morning!”
 ======================================================================================
 */
 
-function deleteCharacterFromPosition (string, position) {
+function deleteCharacterFromPosition(string, position) {
     var result = "";
-    for(var i = 0; i < string.length; i++) {
-        if(i != position) {
+    for (var i = 0; i < string.length; i++) {
+        if (i != position) {
             result += string[i];
         }
     } return result;
@@ -128,9 +128,16 @@ Output: [3, 1, 90, 23, 67]
 ======================================================================================
 */
 
-
-
-
+function deleteEverySecond(array) {
+    var result = [];
+    for (var i = 0; i < array.length; i++) {
+        if (i % 2 === 0) {
+            result[result.length] = array[i];
+        }
+    }
+    return result;
+}
+console.log(deleteEverySecond([3, 5, 1, 8, 90, -4, 23, 1, 67]));
 
 
 /*
@@ -142,10 +149,16 @@ Output: [3, 5, 2, 16, 180, -8, 46, 1, 67]
 */
 
 
-
-
-
-
+function replaceElementsWithDouble (array, position1, position2) {
+    var result = [];
+    for(var i = 0; i < array.length; i++) {
+        if(i >= position1 && i <= position2) {
+            result[result.length] = array[i] * 2;
+        } else result[result.length] = array[i];
+    }
+    return result;
+}
+console.log(replaceElementsWithDouble([3, 5, 1, 8, 90, -4, 23, 1, 67], 2, 6));
 
 
 /*
@@ -178,8 +191,6 @@ Input: [3, 4, 1, 3], [8, 9, 3, 1, 11, 4, 3]
 Output: true
 ======================================================================================
 */
-
-
 
 
 
