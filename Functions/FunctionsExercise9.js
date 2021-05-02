@@ -149,10 +149,10 @@ Output: [3, 5, 2, 16, 180, -8, 46, 1, 67]
 */
 
 
-function replaceElementsWithDouble (array, position1, position2) {
+function replaceElementsWithDouble(array, position1, position2) {
     var result = [];
-    for(var i = 0; i < array.length; i++) {
-        if(i >= position1 && i <= position2) {
+    for (var i = 0; i < array.length; i++) {
+        if (i >= position1 && i <= position2) {
             result[result.length] = array[i] * 2;
         } else result[result.length] = array[i];
     }
@@ -206,8 +206,31 @@ Output: [‘morning’, ‘apple’, ‘tea’, ‘JavaScript’, ‘amazing’]
 ======================================================================================
 */
 
+function sortByNumberOfA(array) {
+    var result = [];
+    var prevCount = 0;
+    var count = 0;
+    var change;
+    result = array;
+    for (var i = 0; i < result.length; i++) {
+        for (var j = 0; j < result[i].length; j++) {
+            if (result[j] == "a" || result[j] == "A") {
+                count++;
+                count = prevCount;
+                console.log(j);
+                if (prevCount > count) {
+                    result[j] = change;
+                    result[j] = result[j - 1];
+                    result[j - 1] = change;
 
-
+                }
+                count = 0;
+            }
+        }
+    }
+    return result;
+}
+console.log(sortByNumberOfA(["apple", "tea", "amazing", "morning", "JavaScript"]));
 
 
 /*
@@ -216,9 +239,6 @@ Output: [‘morning’, ‘apple’, ‘tea’, ‘JavaScript’, ‘amazing’]
 Output:  25. 10. 2018.
 ======================================================================================
 */
-
-
-
 
 
 
