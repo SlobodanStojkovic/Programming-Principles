@@ -213,7 +213,7 @@ function sortByNumberOfA(array) {
     var change;
     result = array;
     for (var i = 0; i < result.length; i++) {
-        for (var j = 0; j < result[i].length; j++) {
+        for (var j = 0; j < 6; j++) {
             if (result[j] == "a" || result[j] == "A") {
                 count++;
                 count = prevCount;
@@ -240,8 +240,32 @@ Output:  25. 10. 2018.
 ======================================================================================
 */
 
+function printNextDay(day, month, year) {
+    var result;
 
-
+    if (day > 32 || day < 1 || month > 13 || month < 1 || year < 0) {
+        result = "Please insert valid values."
+    }
+    if (day === 31) {
+        day = 0;
+        month = month + 1;
+    }
+    if (month === 13) {
+        month = 1;
+        year = year + 1;
+    }
+    if(month === 2 && day === 28) {
+        day = 0;
+        month = month + 1;
+    }
+    if ((month === 4 || month === 6 || month === 9 || month === 11) && day === 30) {
+        day = 0;
+        month = month + 1;
+    }
+    result = (day + 1) + "." + month + "." + year + "."
+    return result;
+}
+console.log(printNextDay(31, 5, 2021));
 
 /*
 ======================================================================================
