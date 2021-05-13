@@ -310,3 +310,29 @@ Output:
    4321
 ======================================================================================
 */
+
+function printAllignedRight(array) {
+    var result = "";
+    var maxChar = 0;
+    generateString = function (numSpaces) {
+        var result = "";
+        for (var i = 0; i < numSpaces; i++) {
+            result += " ";
+        }
+        return result;
+    }
+    for (var i = 0; i < array.length; i++) {
+        array[i] += "";
+        if (array[i].length > maxChar) {
+            maxChar = array[i].length;
+        }
+    }
+    for (var j = 0; j < array.length; j++) {
+        array[j] += "";
+        var numberOfSpaces = maxChar - array[j].length;
+        var spaceString = generateString(numberOfSpaces);
+        result += spaceString + array[j] + "\n";
+    }
+    return result;
+}
+console.log(printAllignedRight([78, 111, 4, 4321]));
