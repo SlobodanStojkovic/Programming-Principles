@@ -198,6 +198,9 @@ function testRecipe(name, type, complexity, arrIngredients, time, instructions) 
         printIngredients: function () {
             console.log(arrIngredients);
         },
+        changeTypeOfCuisine: function (newType) {
+            this.typeOfCuisine = newType;
+        },
         checkTime: function () {
             if (time < 15) {
                 console.log("This meal can be prepared in less than 15 minutes");
@@ -234,3 +237,135 @@ console.log(Pizza.prepTime);
 
 Pizza.deleteIngredient("olive oil");
 console.log(Pizza);
+
+
+
+
+
+//Dario Stamenkovic's way of solving this task
+
+function Recipe(name, type, compl, ingred, prepTime, instruction) {
+    this.name = name;
+    this.typeOfCuisine = type;
+    this.complexity = compl;
+    this.ingredients = ingred;
+    this.preparingTime = prepTime;
+    this.preparingInstruction = instruction;
+    this.printIngredients = function () {
+        console.log(this.ingredients);
+    };
+    this.canBePreparedFast = function () {
+        var result = "Meal can be prepared for 15 minutes";
+        if (this.preparingTime > "15") {
+            result = "Meal can not be prepared for 15 minutes";
+        }
+        return result;
+    };
+    this.changeTypeOfCuisine = function (newType) {
+        this.typeOfCuisine = newType;
+    };
+    this.deleteIngredient = function (ingredient) {
+        var newList = [];
+        for (var i = 0; i < this.ingredients.length; i++) {
+            if (this.ingredients[i] !== ingredient) {
+                newList[newList.length] = this.ingredients[i];
+            }
+        }
+        this.ingredients = newList;
+    };
+}
+
+
+
+
+/* Instead of
+
+this.canBePreparedFast = function() {
+        var result = "Meal can be prepared for 15 minutes";
+        if (this.preparingTime > "15") {
+            result = "Meal can not be prepared for 15 minutes";
+        }
+        return result;
+    };
+
+    we can simply write
+
+this.canBePreparedFast = function() {
+    return this.preparingTime < 15
+};                                          and it will return true or false */
+
+
+
+var pizza = new Recipe(
+    "pizza",
+    "Italian",
+    2,
+    ["flour", "eggs", "salt", "ham", "cheese", "mushrooms", "ketchup"],
+    45,
+    "instructions to prepare pizza ..."
+);
+
+console.log(pizza);
+
+var gibanica = new Recipe(
+    "gibanica",
+    "Serbian",
+    3,
+    ["flour", "eggs", "salt", "cheese"],
+    120,
+    "instructions to prepare gibanica ..."
+);
+
+console.log(gibanica);
+
+
+console.log("---------------------------------------------------------------");
+
+console.log(pizza.preparingTime);
+console.log(gibanica.preparingTime);
+
+console.log("---------------------------------------------------------------");
+
+pizza.printIngredients()
+gibanica.printIngredients()
+
+console.log("---------------------------------------------------------------");
+
+pizza.changeTypeOfCuisine("mexican");       //this changes the type of Cuisine for pizza
+console.log(pizza);
+
+
+console.log("---------------------------------------------------------------");
+
+
+gibanica.deleteIngredient("eggs");
+console.log(gibanica);
+
+
+gibanica.ingredients.push("sugar powder");      //this inserts "sugar powder" in ingredients list 
+console.log(gibanica);
+
+
+
+
+/*Delete igredient can be written on these ways also:
+
+this.deleteIngredient = function (value) {
+    this.ingredients = this.ingredients.filter(function(deleteIngr) {
+        return deleteIngr !== value;
+    });
+}
+
+
+
+Also like this function looks for index of the element and then splice it and shows all other values.
+
+this.deleteIngredient = function(ingredient) {
+    var index = this.ingredients.indexOf(ingredient);
+    if (index !== -1) {
+        this.ingredients.splice(index, 1);
+    }
+};
+
+
+*/
