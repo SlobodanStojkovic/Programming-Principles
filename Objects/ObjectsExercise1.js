@@ -140,6 +140,41 @@ var myJavascript = testProject("some description", "JavaScript", "www.github.com
 console.log(myJavascript);
 
 
+//By using THIS
+
+function testProject(desc, lang, git, dev) {
+    var project = {
+        description: desc,
+        language: lang,
+        gitRepository: git,
+        inDevelopment: dev,
+        printGit: function () {
+            return console.log(git);
+        },
+        isJavaScript: function () {
+            if (this.language === "JavaScript") {                 //instead of project.language we can also use lang
+                return "Project is written in JavaScript";
+            } else "Project is written in " + this.language;     //instead of project.language we can also use lang
+        },
+        isInDevelopment: function () {
+            if (this.inDevelopment === true) {                       //This object that we are located in >>> third way that we can use
+                return "Project is in development";
+            } else {
+                return "Project is not in development";
+            }
+        }
+    }
+    return project;
+}
+
+var login = testProject("Login form for app", "JavaScript", "https://www.github.com/SlobodanStojkovic", true);
+console.log(login);
+
+
+
+
+
+
 
 //Dario Stamenkovic's way of solving this task
 
