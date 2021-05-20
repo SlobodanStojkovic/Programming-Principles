@@ -55,15 +55,15 @@ function removeDuplicates(data) {
     return data.filter((value, index) => data.indexOf(value) === index);
 }
 
-console.log(removeDuplicates(arr).sort(function(a, b){return a-b}));
+console.log(removeDuplicates(arr).sort(function (a, b) { return a - b }));
 
 
 
 var a = [8, 13, 8, 9, 12, 8, 1, 1, 4, 13];
 function removeDuplicate(value, index, self) {
     return self.indexOf(value) === index;
-  }
-var unique = a.filter(removeDuplicate).sort(function(a, b){return a-b});
+}
+var unique = a.filter(removeDuplicate).sort(function (a, b) { return a - b });
 console.log(unique);
 
 
@@ -72,12 +72,38 @@ console.log(unique);
 a. Write a function that checks if a given array has odd number of elements.
 Input: [1, 2, 9, 2, 1]
 Output: true
+
 b. Write a function that counts the number of elements less than the middle
 element. If the given array has an even number of elements, print out an error
 message.
 Input: [-1, 8.1, 3, 6, 2.3, 44, 2.11]
 Output: 4
 */
+
+
+function isOddNumberOfElements(array) {
+    return array.length % 2 !== 0;
+}
+console.log(isOddNumberOfElements([1, 2, 9, 2, 1]));
+
+
+
+function countNumberOfElementsLessThanMiddle(array) {
+    if (array.length % 2 === 0) {
+        console.log("Array has even number of elements");
+        return;
+    }
+    var count = 0;
+    var midIndex = Math.floor(array.length / 2);
+
+    array.forEach(function (element) {      //element is each element of array
+        if (element < array[midIndex]) {
+            count++;
+        }
+    });
+    return count;
+}
+console.log(countNumberOfElementsLessThanMiddle([-1, 8.1, 3, 6, 2.3, 44, 2.11]));
 
 
 
@@ -87,6 +113,47 @@ return an object that contains the smallest value and its last position in the a
 Input: [1, 4, -2, 11, 8, 1, -2, 3]
 Output: { minValue: -2, minLastIndex: 6 }
 */
+
+
+
+function returnSmallest(array) {
+    var min = array[0];
+    for (i = 0; i < array.length; i++) {
+        if (array[i] < min) {
+            min = array[i];
+        }
+    }
+    var lastIndex = array.lastIndexOf(min);
+    return {
+        minElement: min,
+        lastIndex: lastIndex,
+    }
+}
+
+var something = returnSmallest([1, 4, -2, 11, 8, 1, -2, 3]);
+console.log(something);
+
+
+
+
+
+function returnSmallest(array) {
+    var min = array[0];
+    array.forEach(function (element) {
+        if (element < min) {
+            min = element;
+        }
+    });
+var lastIndex = array.lastIndexOf(min);
+return {
+    minElement: min,
+    lastIndex: lastIndex,
+}
+}
+
+var something = returnSmallest([1, 4, -2, 11, 8, 1, -2, 3]);
+console.log(something);
+
 
 
 
@@ -106,6 +173,36 @@ c. Write a function that expects an array and a callback function that filters o
 some of the elements. Use functions defined in a) or b) to test it.
 */
 
+
+function findLesserElement (array, less){
+    var result = [];
+    array.forEach(function(element){
+        if(element < less) {
+            result[result.length] = element;
+        }
+    })
+    return result;
+}
+
+console.log(findLesserElement([2, 3, 8, -2, 11, 4], 6));
+
+
+
+
+
+function findElementsThatStart(array) {
+    var result = [];
+    array.toLowerCase().forEach(function(element){
+       if(array.startWith(element, "pro")) {
+           result[result.length] = element;
+       }
+    })
+    return result;
+}
+console.log(findElementsThatStart(["JavaScript", "Programming", "fun", "product"]));
+
+
+// Practice out these functions forEach, map, filter, join, split, include, indexOf, lastIndexOf
 
 
 
