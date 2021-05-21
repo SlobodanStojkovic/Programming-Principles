@@ -144,11 +144,11 @@ function returnSmallest(array) {
             min = element;
         }
     });
-var lastIndex = array.lastIndexOf(min);
-return {
-    minElement: min,
-    lastIndex: lastIndex,
-}
+    var lastIndex = array.lastIndexOf(min);
+    return {
+        minElement: min,
+        lastIndex: lastIndex,
+    }
 }
 
 var something = returnSmallest([1, 4, -2, 11, 8, 1, -2, 3]);
@@ -174,16 +174,15 @@ some of the elements. Use functions defined in a) or b) to test it.
 */
 
 
-function findLesserElement (array, less){
+function findLesserElement(array, less) {
     var result = [];
-    array.forEach(function(element){
-        if(element < less) {
+    array.forEach(function (element) {
+        if (element < less) {
             result[result.length] = element;
         }
     })
     return result;
 }
-
 console.log(findLesserElement([2, 3, 8, -2, 11, 4], 6));
 
 
@@ -192,27 +191,25 @@ console.log(findLesserElement([2, 3, 8, -2, 11, 4], 6));
 
 function findElementsThatStart(array) {
     var result = [];
-    array.toLowerCase().forEach(function(element){
-       if(array.startWith(element, "pro")) {
-           result[result.length] = element;
-       }
+    array.forEach(function (element) {
+        if (element.startsWith("pro") || element.startsWith("Pro")) {
+            result[result.length] = element;
+        }
     })
     return result;
 }
 console.log(findElementsThatStart(["JavaScript", "Programming", "fun", "product"]));
 
 
-// Practice out these functions forEach, map, filter, join, split, include, indexOf, lastIndexOf
 
 
-
+// Dario suggests that we practice out these functions forEach, map, filter, join, split, include, indexOf, lastIndexOf
 
 /*
 6.
 a. Write a list (array) of products you usually buy in the supermarket. Write a price
 and name for each product. For example,
 [
-
 {name: ‘apples’, price: 100},
 {name: ‘milk’, price: 80},
 {name:’bananas’, price: 150}
@@ -225,8 +222,18 @@ d. Write a function that prints out the name of the most expensive product on yo
 shopping list. Write the name in uppercase.
 */
 
+function Groccery(name, price) {
+    this.name = name;
+    this.price = price;
+}
 
+var apple = new Groccery("apple", 100);
+console.log(apple);
+var milk = new Groccery("milk", 80);
+var bananas = new Groccery("bananas", 150);
 
+var usualShoppingList = [apple, milk, bananas];
+console.log(usualShoppingList);
 
 
 /*
