@@ -94,7 +94,7 @@ console.log(result);
 
 var sample = [2, 4, 7, 11, -2, 1];
 
-var result = sample.map(function(elem){
+var result = sample.map(function (elem) {
     return elem * 2;
 });
 
@@ -113,7 +113,7 @@ console.log(arrayOfChars);
 
 
 var sum = function (a) {
-    return function(b) {
+    return function (b) {
         var sum = a + b;
         return function (c) {
             return sum + c;
@@ -121,7 +121,7 @@ var sum = function (a) {
     }
 }
 
-var sumOfThreeNums = sum (1)(2)(3);
+var sumOfThreeNums = sum(1)(2)(3);
 console.log(sumOfThreeNums);
 
 
@@ -148,6 +148,140 @@ function removeDuplicate(value, index, self) {
 }
 var unique = a.filter(removeDuplicate).sort(function (a, b) { return a - b });
 console.log(unique);
+
+
+
+//Ivan Balic's way of solving this task
+
+var removeDuplicates = function(arr) {
+    var newArray = [];
+
+    arr.forEach(function (elem) {
+        var indexOfCurrent = newArray.indexOf(elem);
+
+        if (indexOfCurrent === -1) {
+            newArray.push(elem);
+        }
+    });
+
+    return newArray.sort(function (a, b) {    //a and b are two neighbouring elements, sort method is Dirty method (it changes array, doesnt make a new one)
+        return a - b;
+    });
+}
+
+//return newArray.sort can be written also as newArray.sort((a, b) => a - b); in ES2015
+
+var sample = [8, 13, 8, 9, 12, 8, 1, 1, 4, 13];
+
+var result = removeDuplicates(sample);
+console.log(result);
+
+
+
+
+var obj = {
+    name: "Ivan",
+    age: 30,
+    lastName: "Balic",
+    gender: "male",
+    sayHello: function () {
+        return "Hello"
+    }
+};
+
+for (var i in obj) {
+    console.log(obj[i]);
+}
+/*
+Ivan
+30
+Balic
+male
+[Function: sayHello]
+*/
+console.log(Object.keys(obj));  //[ 'name', 'age', 'lastName', 'gender', 'sayHello' ]
+
+Object.keys(obj).forEach(function (elem, i, array) {
+    console.log(elem, i, array);
+});
+/*
+name 0 [ 'name', 'age', 'lastName', 'gender', 'sayHello' ]
+age 1 [ 'name', 'age', 'lastName', 'gender', 'sayHello' ]
+lastName 2 [ 'name', 'age', 'lastName', 'gender', 'sayHello' ]
+gender 3 [ 'name', 'age', 'lastName', 'gender', 'sayHello' ]
+sayHello 4 [ 'name', 'age', 'lastName', 'gender', 'sayHello' ]
+*/
+
+var sample = [8, 13, 8, 9, 12, 8, 1, 1, 4, 13];
+
+sample.forEach(function (elem, i, array, next){
+    console.log("native: ", elem, i, array, next);
+});
+
+function ourForEach(callBack, array) {
+    for (var i = 0; i < array.length; i++) {
+        var current = array[i];
+        callBack(current, i, array);
+    }
+}
+
+ourForEach(function (elem) {
+    console.log("our: ", elem);
+}, sample)
+/*
+native:  8 0 [
+  8, 13, 8, 9, 12,
+  8,  1, 1, 4, 13
+] undefined
+native:  13 1 [
+  8, 13, 8, 9, 12,
+  8,  1, 1, 4, 13
+] undefined
+native:  8 2 [
+  8, 13, 8, 9, 12,
+  8,  1, 1, 4, 13
+] undefined
+native:  9 3 [
+  8, 13, 8, 9, 12,
+  8,  1, 1, 4, 13
+] undefined
+native:  12 4 [
+  8, 13, 8, 9, 12,
+  8,  1, 1, 4, 13
+] undefined
+native:  8 5 [
+  8, 13, 8, 9, 12,
+  8,  1, 1, 4, 13
+] undefined
+native:  1 6 [
+  8, 13, 8, 9, 12,
+  8,  1, 1, 4, 13
+] undefined
+native:  1 7 [
+  8, 13, 8, 9, 12,
+  8,  1, 1, 4, 13
+] undefined
+native:  4 8 [
+  8, 13, 8, 9, 12,
+  8,  1, 1, 4, 13
+] undefined
+native:  13 9 [
+  8, 13, 8, 9, 12,
+  8,  1, 1, 4, 13
+] undefined
+our:  8
+our:  13
+our:  8
+our:  9
+our:  12
+our:  8
+our:  1
+our:  1
+our:  4
+our:  13
+*/
+
+
 
 
 /*
