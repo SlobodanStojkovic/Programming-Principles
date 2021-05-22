@@ -6,7 +6,7 @@ Input: [2, 4, 7, 11, -2, 1]
 Output: [2, 2, 4, 4, 7, 7, 11, 11, -2, -2, 1, 1]
 */
 
-function duplicateArray(array) {
+var duplicateArray = function (array) {
     var result = [];
     for (var i = 0; i < array.length; ++i) {
         result.push(array[i], array[i]);
@@ -19,7 +19,7 @@ console.log(duplicateArray([2, 4, 7, 11, -2, 1]));
 
 
 
-function duplicateArray(array) {
+var duplicateArray = function (array) {
     var result = [];
     array.forEach(function (element) {
         result.push(element, element);
@@ -40,6 +40,89 @@ var duplicated = array.map(function (item) {
     return array.concat(result);
 });
 console.log(duplicated);
+
+
+//Ivan Balic's way of solving this task
+
+//functional EXPRESSION is var duplicateAllElements
+//function DECLARATION is function duplicateAllElements
+
+var duplicateAllElements = function (arr) {
+    var duplicated = [];
+
+    arr.forEach(function (elem) {
+        console.log("From forEach: ", elem);
+        duplicated.push(elem, elem);
+    });
+
+    return duplicated;
+}
+
+var sample = [2, 4, 7, 11, -2, 1];
+
+var result = duplicateAllElements(sample);
+
+console.log(result);
+
+
+
+
+//when using i in forEach
+
+var duplicateAllElements = function (arr) {
+    var duplicated = [];
+
+    arr.forEach(function (elem, i) {    //i shows index
+        console.log("From forEach: index " + i + ", value", elem);
+        duplicated.push(elem, elem);
+    });
+
+    return duplicated;
+}
+
+var sample = [2, 4, 7, 11, -2, 1];
+
+var result = duplicateAllElements(sample);
+
+console.log(result);
+
+
+
+
+
+//Example how to use MAP function >>> MAP has to recieve function
+
+var sample = [2, 4, 7, 11, -2, 1];
+
+var result = sample.map(function(elem){
+    return elem * 2;
+});
+
+console.log(result);
+
+
+//How to use multiple Built-In functions
+
+var text = "ALL UPPERCASE";
+var arrayOfChars = text.toLowerCase().split("");    //we can do this because they are METHODS
+
+console.log(arrayOfChars);
+
+//If we have 2 functions DOUBLE that doubles and TRIPLE that triples number we can combine them like this but its not recommended vvv
+//var result = sample.map(triple(double()));    
+
+
+var sum = function (a) {
+    return function(b) {
+        var sum = a + b;
+        return function (c) {
+            return sum + c;
+        }
+    }
+}
+
+var sumOfThreeNums = sum (1)(2)(3);
+console.log(sumOfThreeNums);
 
 
 
