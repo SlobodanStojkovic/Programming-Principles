@@ -153,7 +153,7 @@ console.log(unique);
 
 //Ivan Balic's way of solving this task
 
-var removeDuplicates = function(arr) {
+var removeDuplicates = function (arr) {
     var newArray = [];
 
     arr.forEach(function (elem) {
@@ -214,7 +214,7 @@ sayHello 4 [ 'name', 'age', 'lastName', 'gender', 'sayHello' ]
 
 var sample = [8, 13, 8, 9, 12, 8, 1, 1, 4, 13];
 
-sample.forEach(function (elem, i, array, next){
+sample.forEach(function (elem, i, array, next) {
     console.log("native: ", elem, i, array, next);
 });
 
@@ -379,12 +379,12 @@ console.log(something);
 var a = [1, 4, -2, 11, 8, 1, -2, 3];
 
 function minValue(a) {
-  return Math.min.apply( Math, a);
+    return Math.min.apply(Math, a);
 }
 
 function indexOfSmallest(a) {
-  return a.lastIndexOf(minValue(a));
- }
+    return a.lastIndexOf(minValue(a));
+}
 
 console.log(minValue(a));
 console.log(indexOfSmallest(a));
@@ -470,6 +470,102 @@ var usualShoppingList = [apple, milk, bananas];
 console.log(usualShoppingList);
 
 
+function sumPrices(array) {
+    var sum = 0;
+    sum = apple.price + milk.price + bananas.price;
+    return sum;
+}
+console.log(sumPrices(usualShoppingList));              
+//we can do it on this way when we know how many groceries we have and their names, but when we dont know that then we use methods bellow
+
+
+
+
+
+
+var basket =
+    [
+        { name: "apples", price: 100 },
+        { name: "milk", price: 80 },
+        { name: "bananas", price: 150 }
+    ];
+
+function sumBasket(array) {
+    var sum = 0;
+    array.forEach(function (element) {
+        sum += element.price;
+    })
+    return sum;
+}
+console.log(sumBasket(basket));
+
+
+
+
+function getAverageProductPrice(array) {
+    var result = 0;
+    var sum = 0;
+    var count = 0;
+    array.forEach(function (element) {
+        sum += element.price;
+        count++;
+    })
+    result = sum / count;       //can be aslo written sum / array.lenth without count
+    return result.toFixed(3);
+}
+console.log(getAverageProductPrice(basket));
+
+
+
+function getAverageProductPrice2(array) {
+    var result = 0;
+    var sum = 0;
+    array.forEach(function (element) {
+        sum += element.price;
+    })
+    result = sum / array.length;      //this is another way without count
+    return result.toFixed(3);
+}
+console.log(getAverageProductPrice2(basket));
+
+
+
+
+
+
+function getMostExpensiveProduct(array) {
+    var mostExpensive = array[0].price;            //from first Object price value >>> 100
+    var product;
+    for (var i in array) {                         //i is iterator in parametars
+        if (array[i].price > mostExpensive) {
+            mostExpensive = array[i].price;
+            product = array[i].name;
+        }
+    }
+    return product.toUpperCase();
+}
+console.log(getMostExpensiveProduct(basket));
+
+
+
+
+// To find the maximum price value of the objects in array: vvv
+//Math.max.apply(Math, array.map(function(o) { return o.price; }))
+
+function getMostExpensiveProduct2(array) {
+    var mostExpensive = Math.max.apply(Math, array.map(function (element) {
+        return element.price;
+    }))
+    var product;
+    product = array.find(x => x.price === mostExpensive);   //{ name: 'bananas', price: 150 } This returnds product as an object
+    return product.name.toUpperCase();
+}
+console.log(getMostExpensiveProduct2(basket));
+
+
+
+
+
 /*
 7.
 a. Write a function that checks if a given string is written in all capitals.
@@ -481,6 +577,9 @@ e. Write a function named validator that returns an object with properties
 stringValidator, passwordValidator, colorValidator, and yearValidator referencing
 the functions from a) to d).
 */
+
+
+
 
 
 
