@@ -373,6 +373,23 @@ console.log(something);
 
 
 
+//Borislav Ivanisevic's way of solving this task
+
+
+var a = [1, 4, -2, 11, 8, 1, -2, 3];
+
+function minValue(a) {
+  return Math.min.apply( Math, a);
+}
+
+function indexOfSmallest(a) {
+  return a.lastIndexOf(minValue(a));
+ }
+
+console.log(minValue(a));
+console.log(indexOfSmallest(a));
+
+
 
 /*
 5.
