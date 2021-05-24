@@ -475,7 +475,7 @@ function sumPrices(array) {
     sum = apple.price + milk.price + bananas.price;
     return sum;
 }
-console.log(sumPrices(usualShoppingList));              
+console.log(sumPrices(usualShoppingList));
 //we can do it on this way when we know how many groceries we have and their names, but when we dont know that then we use methods bellow
 
 
@@ -579,6 +579,30 @@ the functions from a) to d).
 */
 
 
+
+function checkIfStringIsWrittenInCapitals(string) {
+        return (/[A-Z]/.test(string));
+}
+console.log(checkIfStringIsWrittenInCapitals("One capital letter"));
+console.log(checkIfStringIsWrittenInCapitals("no capital letters"));
+
+
+
+
+function checkIfStringContainsDigits(string) {
+    var result;
+    for (var i = 0; i < string.length; i++) {
+        if (isFinite(parseInt(string[i]))) {
+            result = true;
+            break;
+        } else {
+            result = false;
+        }
+    }
+    return result;
+}
+console.log(checkIfStringContainsDigits("This string contains number 9"));
+console.log(checkIfStringContainsDigits("This string doesn't contain numbers."));
 
 
 
