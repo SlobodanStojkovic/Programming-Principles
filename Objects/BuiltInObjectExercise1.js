@@ -579,12 +579,28 @@ the functions from a) to d).
 */
 
 
+/*
+The test() method executes a search for a match between a regular expression and a specified string. Returns true or false.
+const str = 'hello world!';
+const result = /^hello/.test(str);
+
+console.log(result); // true
+*/
 
 function checkIfStringIsWrittenInCapitals(string) {
-        return (/[A-Z]/.test(string));
+    var string1 = string.toUpperCase();
+    if (string == string1) {
+        return true;
+    }
+    return false;
 }
 console.log(checkIfStringIsWrittenInCapitals("One capital letter"));
+console.log(checkIfStringIsWrittenInCapitals("ALL CAPITAL LETTERS"));
 console.log(checkIfStringIsWrittenInCapitals("no capital letters"));
+
+
+
+
 
 
 
@@ -603,6 +619,156 @@ function checkIfStringContainsDigits(string) {
 }
 console.log(checkIfStringContainsDigits("This string contains number 9"));
 console.log(checkIfStringContainsDigits("This string doesn't contain numbers."));
+
+
+
+//Hexadecimal colors can have letters from A-F and numbers from 0-9
+
+function checkIfStringIsValidHexadecimalColor(string) {
+    var result = true;
+    if (string[0] != "#") {
+        result = false;
+        return result;
+    }
+    if (string.length < 4 || string.length > 7) {
+        result = false;
+        return result;
+    }
+    //     for (var i = 0; i < string.length - 1; i++) {
+    //         if (string[i + 1] == ("A" || "a" || "B" || "b" || "C" || "c" || "D" || "d" || "E" || "e" || "F" || "f")) {
+    //             string1 += string[i + 1];
+    //         }
+    //         console.log("string1: " + string1);
+    //     }
+    //     if (string1 == string) {
+    //         result = true;
+    //     } else {
+    //         result = false;
+    //     }
+
+    var listOfValid = ['a', 'b', 'c', 'd', 'e', 'f', "1", "2"];
+
+    var stringWithoutHashTag = string.split('#')[1];
+    if (!isFinite(Number("0x" + stringWithoutHashTag))) {
+        result = false;
+    }
+    //     stringWithoutHashTag.split("").forEach(function (elem){
+    //         var indexOfCurrent = listOfValid.indexOf(elem.toLowerCase());
+    //         console.log(elem, indexOfCurrent);
+    //        if(indexOfCurrent === -1){
+    //             result = false;
+    //         }
+    //     });
+
+    return result;
+}
+console.log(checkIfStringIsValidHexadecimalColor("#AACCFF"));
+console.log(checkIfStringIsValidHexadecimalColor("#AZ00FF"));
+
+
+
+
+/* Explanation vvv
+^          -> match beginning
+#          -> a hash
+[0-9A-F]   -> any integer from 0 to 9 and any letter from A to F
+{6}        -> the previous group appears exactly 6 times
+$          -> match end
+i          -> ignore case
+*/
+
+function checkIfStringIsValidHexadecimalColor(string) {
+    var result = /^#[0-9A-F]{6}$/i.test(string);
+    return result;
+}
+
+console.log(checkIfStringIsValidHexadecimalColor("#AACCFF"));
+console.log(checkIfStringIsValidHexadecimalColor("#CD5C5C"));
+console.log(checkIfStringIsValidHexadecimalColor("#CD5c5c"));
+console.log(checkIfStringIsValidHexadecimalColor("#AZ00FF"));
+console.log(checkIfStringIsValidHexadecimalColor("AACCFF#"));
+console.log(checkIfStringIsValidHexadecimalColor("STRING"));
+
+
+
+
+//Here we need to enter a split method to delete a #
+
+function isHexa(string) {
+    var validHex = false;
+    var numLength = string.length;
+    var parsedNum = parseInt(string, 16);
+    console.log(parsedNum);
+    if (!isNaN(parsedNum)) {
+        validHex = true;
+    }
+    return validHex;
+}
+
+console.log(isHexa("CD5C5C"));
+
+
+
+
+
+
+
+
+function isHexa(string) {
+    var validHex = false;
+    var stringWithoutHashtag;
+    var parsedNum;
+    stringWithoutHashtag = string.split("#")[1];        //CD5C5C
+    parsedNum = parseInt(stringWithoutHashtag, 16);
+    if (!isNaN(parsedNum)) {
+        validHex = true;
+    }
+    return validHex;
+}
+
+console.log(isHexa("#CD5C5C"));
+
+
+
+
+
+
+//d. Write a function that checks if a given number belongs to the interval from 1900 to 2018.
+
+function checkIfInInterval(year) {
+    var result;
+    if (year >= 1900 && year <= 2018) {
+        result = true;
+    } else {
+        result = false;
+    }
+    return result;
+}
+console.log(checkIfInInterval(2000));
+console.log(checkIfInInterval(2130));
+
+//math.Random
+
+
+
+
+/*
+e. Write a function named validator that returns an object with properties
+stringValidator, passwordValidator, colorValidator, and yearValidator referencing
+the functions from a) to d).
+*/
+
+
+function validator(stringValidator, passwordValidator, colorValidator, yearValidator) {
+    var newObject = {};
+    newObject.stringValidator = stringValidator;
+    newObject.passwordValidator = passwordValidator;
+    newObject.colorValidator = colorValidator;
+    newObject.yearValidator = yearValidator;
+    return newObject;
+}
+
+var someObject = validator(checkIfStringIsWrittenInCapitals("STRING"), checkIfStringContainsDigits("number 3"), checkIfStringIsValidHexadecimalColor("AACCFF"), checkIfInInterval(2005));
 
 
 
@@ -629,6 +795,38 @@ Output: 3 hours 21 minutes 9 seconds
 
 
 
+var start = "08:22:13"
+var end = "11:43:22"
+
+function calculateFlightTime(start, end) {
+    var startTimeAsArray = start.split(":");
+    var endTimeAsArray = end.split(":");
+    var s = new Date();
+    var e = new Date();
+
+    s.setHours(startTimeAsArray[0]);
+    s.setMinutes(startTimeAsArray[1]);
+    s.setSeconds(startTimeAsArray[2]);
+
+    e.setHours(endTimeAsArray[0]);
+    e.setMinutes(endTimeAsArray[1]);
+    e.setSeconds(endTimeAsArray[2]);
+
+    var difference = e - s;      //difference in miliseconds between those two dates
+
+    if(difference < 0) {
+        difference = 24 * 60 * 60 * 1000 - Math.abs(difference);
+    }
+
+    var differenceInSeconds = difference / 1000;
+    var hours = parseInt(differenceInSeconds / (60 * 60));
+    var minutes = parseInt(differenceInSeconds % (60 * 60) / 60);
+    var seconds = differenceInSeconds - ((hours * 60 * 60 ) + (minutes * 60));
+
+    console.log("Flight time is: " + hours + ":" + minutes + "h" + seconds);
+}
+
+calculateFlightTime(start, end);
 
 
 
