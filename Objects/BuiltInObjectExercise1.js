@@ -621,7 +621,7 @@ console.log(checkIfStringContainsDigits("This string contains number 9"));
 console.log(checkIfStringContainsDigits("This string doesn't contain numbers."));
 
 
-
+//c. Write a function that checks if a given string is a valid hexadecimal color.
 //Hexadecimal colors can have letters from A-F and numbers from 0-9
 
 function checkIfStringIsValidHexadecimalColor(string) {
@@ -772,9 +772,6 @@ var someObject = validator(checkIfStringIsWrittenInCapitals("STRING"), checkIfSt
 
 
 
-
-
-
 /*
 8. Write a function that calculates a number of days to your birthday.
 
@@ -782,6 +779,26 @@ Input: 25 February
 Output: 5 days
 */
 
+
+
+function getDaysUntilBirthday(birthday) {
+    var result;
+    var b = birthday.split(".");
+    var today = new Date();
+    var birthD = new Date();
+
+    birthD.setDate(b[0]);
+    birthD.setMonth(b[1] - 1);
+
+    result = birthD - today;
+    if (result < 0) {
+        result = 365 * 24 * 60 * 60 * 1000 - (today - birthD);
+    }
+
+    var daysUntilBirthday = (result / 1000) / (60 * 60 * 24);
+    return console.log(daysUntilBirthday);
+}
+getDaysUntilBirthday(("25.5.1991"));
 
 
 
@@ -799,31 +816,31 @@ var start = "08:22:13"
 var end = "11:43:22"
 
 function calculateFlightTime(start, end) {
-    var startTimeAsArray = start.split(":");
-    var endTimeAsArray = end.split(":");
+    var startTimeAsArray = start.split(":");    // [ '08', '22', '13' ]
+    var endTimeAsArray = end.split(":");        // [ '11', '43', '22' ]
     var s = new Date();
     var e = new Date();
 
     s.setHours(startTimeAsArray[0]);
     s.setMinutes(startTimeAsArray[1]);
-    s.setSeconds(startTimeAsArray[2]);
+    s.setSeconds(startTimeAsArray[2]);               //console.log(s);     2021-05-26T06:22:13.520Z
 
     e.setHours(endTimeAsArray[0]);
     e.setMinutes(endTimeAsArray[1]);
-    e.setSeconds(endTimeAsArray[2]);
+    e.setSeconds(endTimeAsArray[2]);                 //console.log(e);     2021-05-26T09:43:22.520Z
 
     var difference = e - s;      //difference in miliseconds between those two dates
 
-    if(difference < 0) {
+    if (difference < 0) {
         difference = 24 * 60 * 60 * 1000 - Math.abs(difference);
     }
 
     var differenceInSeconds = difference / 1000;
     var hours = parseInt(differenceInSeconds / (60 * 60));
     var minutes = parseInt(differenceInSeconds % (60 * 60) / 60);
-    var seconds = differenceInSeconds - ((hours * 60 * 60 ) + (minutes * 60));
+    var seconds = differenceInSeconds - ((hours * 60 * 60) + (minutes * 60));
 
-    console.log("Flight time is: " + hours + ":" + minutes + "h" + seconds);
+    console.log("Flight time is: " + hours + ":" + minutes + ":" + seconds);
 }
 
 calculateFlightTime(start, end);
