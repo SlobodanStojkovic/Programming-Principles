@@ -855,6 +855,29 @@ b. Write a function that calculates the distance between two points in the space
 */
 
 
+function CreatePointsInSpace(x, y, z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+
+}
+
+var pointInSpace = new CreatePointsInSpace(3, 5, 1);
+console.log(pointInSpace);
+
+var secondPointInSpace = new CreatePointsInSpace(6, 4, 2);
+
+
+function calculateDistance(point1, point2) {
+    var result = [];
+
+    result[result.length] = Math.abs(point1.x - point2.x);
+    result[result.length] = Math.abs(point1.y - point2.y);
+    result[result.length] = Math.abs(point1.z - point2.z);
+
+    return result;
+}
+console.log(calculateDistance(pointInSpace, secondPointInSpace));
 
 
 
@@ -865,8 +888,6 @@ b. Write a function that generates a random integer value between 50 and 100.
 c. Write a function which expects a number and a callback generator function and
 returns an array of numbers produced by the generator function.
 */
-
-
 
 
 
