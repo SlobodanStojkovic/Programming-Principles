@@ -891,6 +891,32 @@ returns an array of numbers produced by the generator function.
 
 
 
+function getRandom(min, max) {
+    var result = Math.random() * (max - min) + min;      // we need to deduct minimum so the number cant excede maximum
+    // and add minimum so that the number cannot be under minimum
+    return Math.round(result);
+}
+console.log(getRandom(5, 20));
+console.log(getRandom(50, 100));
+
+
+
+function getRandomNumbersArray(num) {
+    var array = [];
+
+    for (var i = 0; i < num; i++) {
+        var generator = function () {
+            var result;
+            result = Math.round(Math.random() * (100 - 1) + 1);     //this means numbers between 1 and 100.
+            return result;
+        }();
+        array[array.length] = generator;
+    }
+    return array;
+}
+console.log(getRandomNumbersArray(9));
+
+
 
 /*
 12. Write a function that shuffles the elements of a given array.
