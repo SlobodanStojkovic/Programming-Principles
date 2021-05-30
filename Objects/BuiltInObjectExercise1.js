@@ -925,3 +925,17 @@ Input: [3, 6, 11, 2, 9, 1]
 
 Output: [6, 2, 9, 1, 3, 11] (it can be any random permutation of the given array)
 */
+
+
+//Picks a random element for each original array element, and excludes it from the next draw
+function shuffleElementsOfArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var random = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[random];
+        array[random] = temp;
+    }
+    return array;
+}
+console.log(shuffleElementsOfArray([3, 6, 11, 2, 9, 1]));
+
