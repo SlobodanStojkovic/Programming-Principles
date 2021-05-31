@@ -177,10 +177,18 @@ Output: false
 */
 
 
+function checkIfObjectValuesIsCorrect (object, property, value) {
+    this.object = object;
+    if(object[property] == value) {
+        return true;
+    } else {
+        return false;
+    }
 
-
-
-
+}
+console.log(checkIfObjectValuesIsCorrect({x: 20, y: 30}, "x", 20));
+console.log(checkIfObjectValuesIsCorrect({x: 20, y: 30}, "z", 20));
+console.log(checkIfObjectValuesIsCorrect({x: 20, y: 30}, "x", 10));
 
 
 /*
