@@ -21,12 +21,12 @@
     }
 
     function Person(name, surname, dateOfBirth) {
-        if (!name || !surname) {
-            throw new Error("Fields name and surname are required");
+        if (!name || !surname || !dateOfBirth) {
+            throw new Error("Fields name, surname and date of birth are required");
         }
         this.name = name;
         this.surname = surname;
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = new Date(dateOfBirth);
         this.getFormatedString = function () {
             return this.name + ", " + this.surname + ", " + this.dateOfBirth;
         }
@@ -44,6 +44,7 @@
         this.country = country;
         var now = new Date;
         var currentYear = now.getFullYear();
+        var personAge = currentYear - this.person.dateOfBirth.getFullYear();
 
         function secondLetterConsonant() {
             var name2 = country.name.toUpperCase();
@@ -58,7 +59,7 @@
             }
         }
         this.getFormatedString = function () {
-            return this.country.name[0] + secondLetterConsonant() + ", " + (this.betAmount * this.country.odds).toFixed(2) + ", " + this.person.name + " " + this.person.surname + ", " + (currentYear - this.person.dateOfBirth.getFullYear()) + " years.";
+            return this.country.name[0] + secondLetterConsonant() + ", " + (this.betAmount * this.country.odds).toFixed(2) + ", " + this.person.name + " " + this.person.surname + ", " + personAge + " years."
         }
     }
 
@@ -113,18 +114,48 @@
     function BettingHouse(competition) {
         this.competition = competition;
         this.listOfBettingPlaces = [];
-        this.numberOfPlayers = function (bettingPlace) {
-            return bettingPlace.listOfPlayers.length;
+        this.numberOfPlayers = function () {
+            var totalPlayers = 0;
+            this.listOfBettingPlaces.forEach(function (bettingPlace) {
+                totalPlayers += bettingPlace.listOfPlayers.length;
+            })
+            return totalPlayers;
         }
         this.addBettingPlace = function (bettingPlace) {
             this.listOfBettingPlaces.push(bettingPlace);
         }
+
+
+        function getSR(bettingHouse) {
+            var count = 0;
+
+            bettingHouse.listOfBettingPlaces.forEach(function (bettingPlace) {
+
+                bettingPlace.listOfPlayers.forEach(function (player) {
+                    if (player.country == "Serbia") {
+                        count++;
+                    }
+                })
+            });
+            return count;
+        }
+
         this.getFormatedString = function () {
-            this.competition + ", " + this.listOfBettingPlaces.length + " betting places, " + this.numberOfPlayers + "\n" + forEach(function (bettingPlace) {
-                bettingPlace.getFormatedString();
-            }); 
+            var result = "";
+            result += this.competition + ", " + this.listOfBettingPlaces.length + " betting places, " + this.numberOfPlayers() + " bets" + "\n";
+            this.listOfBettingPlaces.forEach(function (bettingPlace) {
+                result += "\t" + bettingPlace.getFormatedString() + "\n";
+                bettingPlace.listOfPlayers.forEach(function (player) {
+                    result += "\t\t" + player.getFormatedString() + "\n";
+                })
+            });
+
+            result += "There are " + getSR() + " bets on Serbia";
+            return result;
         }
     }
+
+
 
     function createPlayer(person, bet, country) {
         return new Player(person, bet, country);
@@ -140,10 +171,10 @@
         var serbia = new Country("Serbia", 3, "EU");
         var greece = new Country("Greece", 5, "EU");
 
-        var person1 = new Person("Pera", "Peric", new Date("07.01.1991"));
-        var person2 = new Person("Majda", "Jankovic", new Date("13.06.1999"));
-        var person3 = new Person("Jova", "Jovanovic", new Date("26.11.1987"));
-        var person4 = new Person("Slavica", "Milanovic", new Date("30.09.1973"));
+        var person1 = new Person("Pera", "Peric", ("Jan 7 1991"));
+        var person2 = new Person("Majda", "Jankovic", ("Jun 13 1999"));
+        var person3 = new Person("Jova", "Jovanovic", ("Nov 26 1997"));
+        var person4 = new Person("Slavica", "Milanovic", ("Sep 30 1983"));
 
         var address1 = new Address(serbia, "Belgrade", 11000, "Nemanjina", 4);
         var address2 = new Address(serbia, "Belgrade", 11000, "Kneza Milosa", 35);
