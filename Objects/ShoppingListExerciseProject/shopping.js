@@ -2,45 +2,42 @@
 
 (function () {
 
-    function Product(name, price, expirationYear) {
+    function Product(name, price, expirationDate) {
         this.id = function () {
-            return String((Math.round((99999 - 1) * Math.random() + 1))).padStart(5, '0');  //String() and .padStart(5, "0") function serves to change number to string and then use padStart to add leading zeros if a number has less than 5 digits
+            return String((Math.round((99999 - 1) * Math.random() + 1))).padStart(5, '0');  //String() and .padStart(5, "0") function is used to change number to string and then use padStart to add leading zeros if a number has less than 5 digits
         };
         this.name = name;
         this.price = price.toFixed(2);
-        this.expirationYear = expirationYear;
+        this.expirationDate = new Date(expirationDate);
         this.getInfo = function () {
             var short = "";
-            short = (this.name[0] + this.name.charAt(this.name.length - 1)).toUpperCase();
+            short = this.name[0] + this.name[this.name.length - 1].toUpperCase();
             return short + this.id() + ", " + this.name + ", " + this.price;
-        }
+        };
     }
 
     function ShoppingBag() {
-
         this.date = new Date();
-
-        this.currentYear = this.date.getFullYear();
         this.listOfProducts = [];
 
         this.addProduct = function (product) {
-            if (this.currentYear <= product.expirationYear) {
+            if (this.date <= product.expirationDate) {
                 this.listOfProducts.push(product);
             }
             return this.listOfProducts;
-        }
+        };
 
         this.getTotalPrice = function () {
             var sum = 0;
             this.listOfProducts.forEach(function (element) {
-                sum += parseFloat(element.price);
+                sum += parseFloat(element.price);   //we have to use parseFloat because it sees price as a STRING
             });
             return sum.toFixed(2);
-        }
+        };
 
         this.getAveragePrice = function () {
             return (this.getTotalPrice() / this.listOfProducts.length).toFixed(3);
-        }
+        };
 
         this.getMostExpensive = function () {
             var mostExpensivePrice = 0;
@@ -51,25 +48,30 @@
                     mostExpensivePrice = parseFloat(element.price);
                     mostExpensiveProduct = element.name;
                 }
-            })
-            return "The most expensive product is: " + mostExpensiveProduct + ", and its price is: " + mostExpensivePrice;
-        }
+            });
+            return "The most expensive product is: " + mostExpensiveProduct + ", and its price is: " + mostExpensivePrice + ".";
+        };
         //or like this vvv
         /* this.getMostExpensive = function () {
             var highestPrice = Math.max.apply(null, this.listOfProducts.map(element => element.price));
             var mostExpensiveProduct = this.listOfProducts.find(element => element.price == highestPrice);
-            return mostExpensiveProduct;
+            return "The most expensive product is: " + mostExpensiveProduct + ", and its price is: " + mostExpensivePrice + ".";
         } */
+    }
 
-    };
-
-    function PaymentCard(accountBallance, status, validity) {
+    function PaymentCard(accountBallance, status, validUntil) {
         this.accountBallance = accountBallance.toFixed(2);
         this.status = status;
-        this.validity = validity;
+        this.validUntil = new Date(validUntil);
     }
 
     function checkoutAndBuy(shoppingBag, paymentCard) {
+        if (paymentCard.status != "active") {
+            throw new Error("This payment card is not active.");
+        }
+        if (paymentCard.validUntil < new Date()) {
+            throw new Error("This payment card is expired.");
+        }
         if (shoppingBag.getTotalPrice() <= parseFloat(paymentCard.accountBallance)) {   //we have to parseFloat this because it sees it as STRING
             return "Purchase is successful";
         } else {
@@ -77,22 +79,22 @@
         }
     }
 
-
     try {
 
         var shoppingBag1 = new ShoppingBag();
 
-        var product1 = new Product("Bannana", 130, "2022.");
-        var product2 = new Product("Apple", 230, "2024.");
-        var product3 = new Product("Pear", 330, "2023.");
-        var paymentCard1 = new PaymentCard(3000, "active", "valid");
+        var product1 = new Product("Bannana", 130, "Jan 7 2023");
+        var product2 = new Product("Apple", 230, "Oct 30 2024");
+        var product3 = new Product("Pear", 330, "Mar 23 2023");
+
+        var paymentCard1 = new PaymentCard(3000, "active", "Jan 10 2022");
 
         shoppingBag1.addProduct(product1);
         shoppingBag1.addProduct(product2);
         shoppingBag1.addProduct(product3);
 
+        console.log(product1.getInfo());
         console.log(shoppingBag1.listOfProducts);
-        console.log(shoppingBag1.listOfProducts[0].price);
         console.log(shoppingBag1.getTotalPrice());
         console.log(shoppingBag1.getAveragePrice());
         console.log(shoppingBag1.getMostExpensive());
