@@ -66,7 +66,7 @@
     }
 
     function checkoutAndBuy(shoppingBag, paymentCard) {
-        if (paymentCard.status != "active") {
+        if (paymentCard.status !== "active") {
             throw new Error("This payment card is not active.");
         }
         if (paymentCard.validUntil < new Date()) {
