@@ -12,8 +12,11 @@
     })
 
     function Country(name, odds, continent) {
-        if (continent != "EU" && continent != "AS" && continent != "AF" && continent != "SA" && continent != "NA" && continent != "AU") {
-            throw new Error("Please insert valid continent");
+        /* if (continent != "EU" && continent != "AS" && continent != "AF" && continent != "SA" && continent != "NA" && continent != "AU") {
+                    throw new Error("Please insert valid continent");
+                } this code can be written like this vvv */
+        if (!Object.values(CONTINENTS).includes(continent)) {
+            throw new Error('Please insert valid continent');
         }
         if (!name || !odds) {
             throw new Error("Country name and odds are required");
