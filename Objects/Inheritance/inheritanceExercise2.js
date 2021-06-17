@@ -110,6 +110,20 @@ class App {
         this.licence = licence;
         this.stars = stars;
     }
+
+    isCCLicence() {
+        if (this.licence == "CC") {
+            return true;
+        } else return false;
+    }
+
+    like() {
+        this.stars++;
+    }
+
+    showStars() {
+        console.log(this.stars);
+    }
 }
 
 
@@ -131,22 +145,6 @@ class WebApp extends App {
             return true;
         } else return false;
     }
-
-    isCCLicence() {
-        if (this.licence == "CC") {
-            return true;
-        } else return false;
-    }
-
-    like() {
-        this.stars++;
-    }
-
-    showStars() {
-        console.log(this.stars);
-    }
-
-
 }
 
 
@@ -157,7 +155,6 @@ class MobileApp extends App {
 
         this.platforms = platforms;
     }
-
 
     getData() {
         console.log(this.name + ", " + this.platforms + ", " + this.licence + ", " + this.stars);
