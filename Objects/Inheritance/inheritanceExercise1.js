@@ -56,11 +56,11 @@ Developer.prototype.getSpecialization = function () {
 
 
 
-function Manager(name, surname, job, salary, specialization, department) {
-    Developer.call(this, name, surname, job, salary, specialization);
+function Manager(name, surname, job, salary, department) {
+    Employee.call(this, name, surname, job, salary);
     this.department = department;
 }
-Manager.prototype = Object.create(Developer.prototype);
+Manager.prototype = Object.create(Employee.prototype);
 Manager.prototype.constructor = Manager;
 
 Manager.prototype.getDepartment = function () {
@@ -75,8 +75,11 @@ Manager.prototype.changeDepartment = function (newDepartment) {
 
 var employee1 = new Employee("Pera", "Peric", "Programmer", 1000);
 employee1.increaseSalary();
-console.log(employee1);
 
+var manager1 = new Manager("Marko", "Markovic", "manager1", "2000", "finances")
+manager1.changeDepartment("accounting");
+
+console.log(manager1);
 
 
 
@@ -138,8 +141,8 @@ class Developer extends Employee {
 
 
 class Manager extends Employee {
-    constructor(name, surname, job, salary, specialization, department) {
-        super(name, surname, job, salary, specialization);
+    constructor(name, surname, job, salary,  department) {
+        super(name, surname, job, salary);
 
         this.department = department;
     }
