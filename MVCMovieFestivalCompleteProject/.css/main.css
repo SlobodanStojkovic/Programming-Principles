@@ -1,0 +1,39 @@
+.container {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin: 1px 0;
+}
+
+.wrapper {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+input {
+   width: 99.5%;
+   padding: 3px;
+   border-radius: 3px;
+   border: 1px solid lightgray;  
+   margin: 5px 0;
+}
+
+select {
+    width: 100%;
+    padding: 3px;
+    border-color: rgb(250, 244, 244);
+     margin: 5px 0;
+    background-color: rgb(250, 244, 244);
+}
+button {
+   width: 100%;
+   padding: 3px;
+   border-radius: 3px;
+   border: 1px solid green;
+   background-color: green;
+   color: white;
+   margin: 5px 0;
+}
