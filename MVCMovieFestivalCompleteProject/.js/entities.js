@@ -1,106 +1,83 @@
 "use strict";
 
 
-class Movie {
-    constructor(title, genre, length) {
-        if (!genre) {
-            throw new Error("Please insert valid genre");
-        }
-        if (!title || !length) {
-            throw new Error("Fields title and length are required");
-        }
-        this.title = title;
-        this.genre = genre;
-        this.length = parseInt(length);
-    }
 
-    getGenreShort() {
-        return this.genre[0] + this.genre[this.genre.length-1];
-    }
 
+function Movie(title, genre, length) {
+/*     if (!genre) {
+        throw new Error("Please insert valid genre");
+    } */
+/*     if (!title) {
+        throw new Error("Field title is required");
+    } */
+/*     if (!length) {
+        throw new Error("Field length is required");
+    } */
+    this.title = title;
+    this.genre = genre;
+    this.length = parseInt(length);
 }
 
-class Program {
-    constructor(date) {
-        this.date = new Date(date);
-        this.listOfMovies = [];
-        this.totalNumberOfMovies = this.listOfMovies.length;
-    }
-
-    addMovie(movie) {
-        if (!movie) {
-            throw new Error("Please insert valid movie");
-        }
-        this.listOfMovies.push(movie);
-    }
-
-    getData() {
-        var now = new Date(date);
-        var day = now.getDate();
-        var month = now.getMonth() + 1;
-        var year = now.getFullYear();
-        var ddmmyy = day + "." + month + "." + year;
-
-        function totalLength () {
-            var result = 0;
-            this.listOfMovies.forEach(function (movie) {
-                result += movie.length;
-            });
-            return result;
-        }
-
-        function movieList() {
-            var result = "";
-            this.listOfMovies.forEach(function (movie) {
-                result += "\t\t\t\t" + movie.title + ", " + movie.length + " min" + ", " + movie.genre.name + "\n";
-            });
-            return result;
-        }
-        return "\t\t" + ddmmyy + ", Program duration is " + this.totalLength() + " min" + "\n" + this.movieList();
-    }
+Movie.prototype.getData = function () {
+    return this.title + ", " + this.length + "min" + ", " + (this.genre[0] + this.genre[this.genre.length - 1]).toUpperCase();
 }
 
 
-class Festival {
-    constructor(name) {
-        this.name = name;
-        this.listOfPrograms = [];
-    }
 
-    numberOfMovies() {
-        var count = 0;
-        this.listOfPrograms.forEach(function (program) {
-            count += program.totalNumberOfMovies;
-        });
-        return count;
-    }
+function Program(date) {
+    this.date = new Date(date);
+    this.listOfMovies = [];
+}
 
-    addProgram(program) {
-        if (!program) {
-            throw new Error("Please insert valid program");
-        }
-        this.listOfPrograms.push(program);
-    }
+Program.prototype.totalMovieDuration = function () {
+    var result = 0;
+    this.listOfMovies.forEach(function (movie) {
+        result += movie.length;
+    });
+    return result;
+}
 
-    getData() {
-        this.programData = function () {
-            var result = "";
-            this.listOfPrograms.forEach(function (program) {
-                result += program.getData();
-            })
-            return result + "\n";
-        }
-        return this.name + " has " + this.numberOfMovies() + " movie titles" + "\n" + this.programData();
-    }
+Program.prototype.addMovie = function (movie) {
+    this.listOfMovies.push(movie);
+}
+
+Program.prototype.totalNumberOfMovies = function () {
+    return this.listOfMovies.length;
+}
+
+Program.prototype.getData = function () {
+    var day = this.date.getDate();
+    var month = this.date.getMonth();
+    var year = this.date.getFullYear();
+    var date = day + "." + month + "."+ year + "."
+    return date + ", " + this.totalNumberOfMovies() + " movies, duration: " + this.totalMovieDuration() + "min";
 }
 
 
-function createMovie(movieTitle, movieGenre, movieLength) {
+function createMovie (movieTitle, movieGenre, movieLength) {
     return new Movie(movieTitle, movieGenre, movieLength);
 }
 
-function createProgram(date) {
+
+function createProgram  (date) {
     return new Program(date);
 }
 
+
+
+var movie1 = createMovie("Titanic", "Drama", 123);
+var movie2 = createMovie("Hitman", "Action", 120);
+
+console.log(movie1);
+console.log(movie1.getData());
+
+var program1 = createProgram("Oct 7 2022");
+program1.addMovie(movie1);
+program1.addMovie(movie2);
+
+
+console.log(program1);
+console.log(program1.totalMovieDuration());
+console.log(program1.totalNumberOfMovies());
+console.log(program1.getData());
 

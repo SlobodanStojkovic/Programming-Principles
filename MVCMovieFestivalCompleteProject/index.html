@@ -19,12 +19,12 @@
             <div class="createMovie">
 
                 <label>Title
-                    <input type="text" placeholder="Title">
+                    <input id="titleInput" type="text" placeholder="Title">
                 </label>
 
                 <label>Length (min)
 
-                    <input type="number" placeholder="Length in min">
+                    <input id="titleLength" type="number" placeholder="Length in min">
                 </label>
                 <select name="genre" id="genre">-
                     <option value="">-</option>
@@ -36,7 +36,7 @@
                     <option value="Thriller">Thriller</option>
                 </select>
                 <p id="errorMovie"></p>
-                <button id="createMovieBtn">Create movie</button>
+                <button onclick="getCreateMovie1();" id="createMovieBtn">Create movie</button>
             </div>
 
             <p>Program</p>
