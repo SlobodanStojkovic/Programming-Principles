@@ -25,7 +25,7 @@ function App(name, licence, stars) {
 }
 
 App.prototype.isCCLicence = function () {
-    if (this.licence == "CC") {
+    if (this.licence === "CC") {
         return true;
     } else return false;
 }
@@ -37,6 +37,8 @@ App.prototype.like = function () {
 App.prototype.showStars = function () {
     console.log(this.stars);
 }
+
+
 
 
 
@@ -54,13 +56,10 @@ WebApp.prototype.getData = function () {
 }
 
 WebApp.prototype.reactBased = function () {
-    if (this.technologies == "react") {
+    if (this.technologies.toLowerCase() === "react") {
         return true;
     } else return false;
 }
-
-
-
 
 
 
@@ -78,7 +77,7 @@ MobileApp.prototype.getData = function () {
 }
 
 MobileApp.prototype.forAndroid = function () {
-    if (this.platforms == "android") {
+    if (this.platforms === "android") {
         return true;
     } else return false;
 }
@@ -112,7 +111,7 @@ class App {
     }
 
     isCCLicence() {
-        if (this.licence == "CC") {
+        if (this.licence === "CC") {
             return true;
         } else return false;
     }
@@ -141,7 +140,7 @@ class WebApp extends App {
     }
 
     reactBased() {
-        if (this.technologies == "react") {
+        if (this.technologies === "react") {
             return true;
         } else return false;
     }
@@ -161,7 +160,7 @@ class MobileApp extends App {
     }
 
     forAndroid() {
-        if (this.platforms == "android") {
+        if (this.platforms === "android") {
             return true;
         } else return false;
     }
