@@ -1,25 +1,21 @@
 "use strict";
 
-
-
-
-function Movie(title, genre, length) {
-/*     if (!genre) {
-        throw new Error("Please insert valid genre");
-    } */
-/*     if (!title) {
-        throw new Error("Field title is required");
-    } */
-/*     if (!length) {
-        throw new Error("Field length is required");
-    } */
-    this.title = title;
+function Genre(genre) {
     this.genre = genre;
-    this.length = parseInt(length);
 }
 
+
+function Movie(title, length, genre) {
+    Genre.call(this, genre);
+    this.title = title;
+    this.length = parseInt(length);
+    this.genre = genre;
+}
+Movie.prototype = Object.create(Genre.prototype);
+Movie.prototype.constructor = Movie;
+
 Movie.prototype.getData = function () {
-    return this.title + ", " + this.length + "min" + ", " + (this.genre[0] + this.genre[this.genre.length - 1]).toUpperCase();
+    return this.title + ", " + this.length + "min" + ", " + this.genre[0] + this.genre[this.genre.length - 1].toUpperCase();
 }
 
 
@@ -54,24 +50,14 @@ Program.prototype.getData = function () {
 }
 
 
-function createMovie (movieTitle, movieGenre, movieLength) {
-    return new Movie(movieTitle, movieGenre, movieLength);
-}
 
-
-function createProgram  (date) {
-    return new Program(date);
-}
-
-
-
-var movie1 = createMovie("Titanic", "Drama", 123);
-var movie2 = createMovie("Hitman", "Action", 120);
+var movie1 = new Movie("Titanic", "Drama", 123);
+var movie2 = new Movie("Hitman", "Action", 120);
 
 console.log(movie1);
 console.log(movie1.getData());
 
-var program1 = createProgram("Oct 7 2022");
+var program1 = new Program("Oct 7 2022");
 program1.addMovie(movie1);
 program1.addMovie(movie2);
 
