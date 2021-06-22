@@ -42,28 +42,10 @@ Program.prototype.totalNumberOfMovies = function () {
 }
 
 Program.prototype.getData = function () {
+    var date = new Date(this.date);
     var day = this.date.getDate();
     var month = this.date.getMonth();
     var year = this.date.getFullYear();
-    var date = day + "." + month + "."+ year + "."
-    return date + ", " + this.totalNumberOfMovies() + " movies, duration: " + this.totalMovieDuration() + "min";
+    var ddmmyyyy = day + "." + month + "."+ year + "."
+    return ddmmyyyy + ", " + this.totalNumberOfMovies() + " movies, duration: " + this.totalMovieDuration() + "min";
 }
-
-
-
-var movie1 = new Movie("Titanic", "Drama", 123);
-var movie2 = new Movie("Hitman", "Action", 120);
-
-console.log(movie1);
-console.log(movie1.getData());
-
-var program1 = new Program("Oct 7 2022");
-program1.addMovie(movie1);
-program1.addMovie(movie2);
-
-
-console.log(program1);
-console.log(program1.totalMovieDuration());
-console.log(program1.totalNumberOfMovies());
-console.log(program1.getData());
-

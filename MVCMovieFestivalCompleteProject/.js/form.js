@@ -9,6 +9,7 @@ var errorMovie = document.getElementById("errorMovie");
 var movieArray = [];
 var programArray = [];
 var newMoviesList = document.getElementById("newMoviesList");
+var newProgramList = document.getElementById("newProgramList");
 
 
 
@@ -32,11 +33,25 @@ function createNewMovie() {
         var movie = new Movie(title, length, genre)
         movieArray.push(movie);
 
-        var p = document.createElement("p");
+        var pMovie = document.createElement("p");
         var movieGetData = movie.getData();
         var newMovieInListText = document.createTextNode(movieGetData);
-        p.appendChild(newMovieInListText);
-        newMoviesList.appendChild(p);
+        pMovie.appendChild(newMovieInListText);
+        newMoviesList.appendChild(pMovie);
+
+        var sel = document.getElementById("selectMovie");
+
+        // create new option element
+        var opt = document.createElement("option");
+
+        // create text node to add to option element (opt)
+        opt.appendChild(document.createTextNode(title));
+
+        // set value property of opt
+        opt.value = movie;
+
+        // add opt to end of select box (sel)
+        sel.appendChild(opt);
     }
 
 }
@@ -47,12 +62,38 @@ function createNewProgram() {
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
     var ddmmyyyy = day + "." + month + "." + year + "."
-    return ddmmyyyy + ", " + Program.prototype.totalNumberOfMovies() + " movies, duration: " + Program.prototype.totalMovieDuration() + "min";
+    console.log(ddmmyyyy);
+
+    var program = new Program(date);
+    programArray.push(program);
+
+    var pProgram = document.createElement("p");
+    var programGetData = program.getData();
+    var newProgramInListText = document.createTextNode(programGetData);
+    pProgram.appendChild(newProgramInListText);
+    newProgramList.appendChild(pProgram);
+
+
+    var sel = document.getElementById("selectProgram");
+
+    // create new option element
+    var opt = document.createElement("option");
+
+    // create text node to add to option element (opt)
+    opt.appendChild(document.createTextNode(ddmmyyyy));
+
+    // set value property of opt
+    opt.value = date;
+
+    // add opt to end of select box (sel)
+    sel.appendChild(opt);
 }
 
-/* function addMovieToProgram() {
-    var 
-} */
+function addMovieToProgram() {
+    /*     var movieSelect = 
+        
+        var programSelect =  */
+}
 
 createMovieBtn.addEventListener("click", createNewMovie);
 createProgramBtn.addEventListener("click", createNewProgram);
