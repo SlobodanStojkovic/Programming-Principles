@@ -1,8 +1,16 @@
 "use strict";
 
+function Festival() {
+    this.listOfAllMovies = [];
+    this.listOfAllPrograms = [];
+}
+
+
+
 function Genre(genre) {
     this.genre = genre;
 }
+
 
 
 function Movie(title, length, genre) {
@@ -49,3 +57,5 @@ Program.prototype.getData = function () {
     var ddmmyyyy = day + "." + month + "."+ year + "."
     return ddmmyyyy + ", " + this.totalNumberOfMovies() + " movies, duration: " + this.totalMovieDuration() + "min";
 }
+
+
