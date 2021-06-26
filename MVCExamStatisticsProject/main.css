@@ -1,0 +1,101 @@
+.header {
+    background-image: url("https://aliabdaal.com/content/images/2020/02/maxpixel-freegreatpicture-com-learn-bible-stack-books-study-literature-paper-2158737.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+}
+
+.header * {
+    text-align:center;
+}
+
+.header > h1 {
+    color: white;
+    padding-top: 30px;
+}
+
+.header > h3 {
+    color: white;
+    font-weight: 300;
+}
+
+.passedDiv {
+    margin: 0 auto;
+    background-color: teal;
+    width: 300px;
+}
+
+.passedP {
+    text-align: left;
+    padding: 8px;
+}
+
+.failedDiv {
+    margin: 0 auto;
+    background-color: tomato;
+    width: 300px;
+}
+
+.failedP {
+    text-align: left;
+    padding: 8px;
+}
+
+.addGrade {
+    background-color: gainsboro;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addGrade * {
+    padding: 5px;
+    border-radius: 3px;
+    margin: 3px;
+}
+
+#nameSurname {
+    border: 1px solid skyblue;
+}
+
+#addStudent {
+    color: skyblue;
+    font-weight: bolder;
+    border: none;
+    background-color: gainsboro;
+    font-size: large;
+}
+
+#grade {
+    width: 60px;
+    border: none;
+    padding-left: 15px;
+}
+
+#subject {
+    border: none;
+    width: 100px;
+}
+
+.results {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.resultsPassed {
+    width: 30%;
+}
+
+.resultsFailed {
+    width: 30%;
+}
+
+.resultsFailed > h3 {
+    color: red;
+}
+
+ul {
+    list-style-type: none;
+}
