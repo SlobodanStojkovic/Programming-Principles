@@ -21,38 +21,39 @@ function createNewMovie() {
 
     if (!title || !length || !genre) {
         errorMovie.textContent = "Please fill out all required fields."
-        //This deletes values in create movie fields
-        title = "";
-        length = "";
-        genre = "-";
-
-    } else {
-        errorMovie.textContent = "";
-
-        var movie = new Movie(title, length, genre)
-        festival.listOfAllMovies.push(movie);
-        var movieIndex = festival.listOfAllMovies.length - 1;   //this creates index of a movie when we create a new movie -> Then later we use it to connect and insert movie to Program
-
-        var pMovie = document.createElement("p");
-        var movieGetData = movie.getData();
-        var newMovieInListText = document.createTextNode(movieGetData);
-        pMovie.appendChild(newMovieInListText);
-        newMoviesList.appendChild(pMovie);
-
-        var sel = document.getElementById("selectMovie");
-
-        // create new option element
-        var opt = document.createElement("option");
-
-        // create text node to add to option element (opt)
-        opt.appendChild(document.createTextNode(title));
-
-        // set value property of opt
-        opt.value = movieIndex;
-
-        // add opt to end of select box (sel)
-        sel.appendChild(opt);
+        return;
     }
+
+    //This deletes values in create movie fields, it MUST BE WRITTEN LIKE THIS titleOfTheMovie.value = ""; BECAUSE title = "" DONT WORK, that is how we set it again.
+    titleOfTheMovie.value = "";
+    titleLength.value = "";
+    titleGenre.value = "-";
+
+    errorMovie.textContent = "";
+
+    var movie = new Movie(title, length, genre)
+    festival.listOfAllMovies.push(movie);
+    var movieIndex = festival.listOfAllMovies.length - 1;   //this creates index of a movie when we create a new movie -> Then later we use it to connect and insert movie to Program
+
+    var pMovie = document.createElement("p");
+    var movieGetData = movie.getData();
+    var newMovieInListText = document.createTextNode(movieGetData);
+    pMovie.appendChild(newMovieInListText);
+    newMoviesList.appendChild(pMovie);
+
+    var sel = document.getElementById("selectMovie");
+
+    // create new option element
+    var opt = document.createElement("option");
+
+    // create text node to add to option element (opt)
+    opt.appendChild(document.createTextNode(title));
+
+    // set value property of opt
+    opt.value = movieIndex;
+
+    // add opt to end of select box (sel)
+    sel.appendChild(opt);
 }
 
 function createNewProgram() {
@@ -61,6 +62,26 @@ function createNewProgram() {
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
     var ddmmyyyy = day + "." + month + "." + year + ".";
+
+    var now = new Date;
+    if (date < now) {
+        errorCreateProgram.textContent = "Please enter valid date in future";
+        return;
+    }
+
+
+    //some goes through each element of array and returns true or false if at least SOME element has same value
+    var hasProgramWithSameDate = festival.listOfAllPrograms.some(function (program) {
+        return date.getTime() === program.date.getTime();
+    });
+
+    if (hasProgramWithSameDate) {
+        errorCreateProgram.textContent = 'Program for same date already exists';
+        return;
+    }
+
+    
+    errorCreateProgram.textContent = "";
 
     var program = new Program(date);
     festival.listOfAllPrograms.push(program);
