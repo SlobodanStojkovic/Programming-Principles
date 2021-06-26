@@ -14,7 +14,7 @@
     <div class="container">
         <div class="header">
             <h1>Exam statistics June</h1>
-            <h3>Total students: %count% </h3>
+            <h3>Total students: <p id="totalStudents"></p> </h3>
             <div class="passedDiv">
                 <p class="passedP">PASSED:</p>
                 <p class="passedNumber"></p>
@@ -46,6 +46,8 @@
                 </label>
 
                 <button id="addStudent">ADD</button>
+
+                <p id="errorMessage"></p>
         </div>
 
 <div class="results">
@@ -68,7 +70,7 @@
 
     </div>
 
-
+    <script src="college.js"></script>
     <script src="subject.js"></script>
     <script src="student.js"></script>
     <script src="exam.js"></script>
