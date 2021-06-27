@@ -14,68 +14,70 @@
     <div class="container">
         <div class="header">
             <h1>Exam statistics June</h1>
-            <h3>Total students: <p id="totalStudents"></p> </h3>
+            <h3>Total students: <span id="totalStudents"></span>
+            </h3>
             <div class="passedDiv">
-                <p class="passedP">PASSED:</p>
-                <p class="passedNumber"></p>
+                <p class="passedP">PASSED:
+                    <span class="passed">
+                        <span class="passedNumber">0 </span>
+                    </span>
+                </p>
             </div>
             <div class="failedDiv">
-                <p class="failedP">FAILED:</p>
-                <div class="failed">
-                    <p class="failedNumer"></p>
-                    <p class="failedPercentage"></p>
-                </div>
+                <p class="failedP">FAILED:
+                    <span class="failed">
+                        <span class="failedNumber">0 </span>
+                        <span class="failedPercentage">0% </span>
+                    </span>
+                </p>
             </div>
         </div>
+    </div>
 
-        <div class="addGrade">
+    <div class="addGrade">
 
-                <select name="" id="subject">
-                    <option value="-">-</option>
-                    <option value="JavaScript">JavaScript</option>
-                    <option value="Programing">Programing</option>
-                    <option value="WEB">WEB</option>
-                </select>
+        <select name="" id="subject">
+            <option value="-">-</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Programing">Programing</option>
+            <option value="WEB">WEB</option>
+        </select>
 
-                <label>
-                    <input id="nameSurname" placeholder="Name surname" type="text">
-                </label>
+        <label>
+            <input id="nameSurname" placeholder="Name surname" type="text">
+        </label>
 
-                <label>
-                    <input id="grade" placeholder="Grade" type="number" min="1" max="10">
-                </label>
+        <label>
+            <input id="grade" placeholder="Grade" type="number" min="1" max="10">
+        </label>
 
-                <button id="addStudent">ADD</button>
+        <button id="addStudent">ADD</button>
 
-                <p id="errorMessage"></p>
+        <p id="errorMessage"></p>
+    </div>
+
+    <div class="results">
+        <div class="resultsPassed">
+            <h3>PASSED</h3>
+            <ul id="ulPassed">
+
+            </ul>
         </div>
 
-<div class="results">
-    <div class="resultsPassed">
-        <h3>PASSED</h3>
-        <ul id="ulPassed">
+        <div class="resultsFailed">
+            <h3>FAILED</h3>
+            <ul id="ulFailed">
 
-        </ul>
-    </div>
-
-    <div class="resultsFailed">
-        <h3>FAILED</h3>
-        <ul id="ulFailed">
-
-        </ul>
-    </div>
-</div>
-
-
-
+            </ul>
+        </div>
     </div>
 
     <script src="college.js"></script>
     <script src="subject.js"></script>
     <script src="student.js"></script>
     <script src="exam.js"></script>
-    <script src="form.js"></script>
     <script src="app.js"></script>
+    <script src="form.js"></script>
 </body>
 
 </html>

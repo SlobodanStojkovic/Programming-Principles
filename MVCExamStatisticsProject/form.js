@@ -1,28 +1,5 @@
 "use strict";
 
-var subject = document.getElementById("subject");
-var subjectValue = subject.value;
-
-var nameSurname = document.getElementById("nameSurname");
-var nameSurnameValue = nameSurname.value;
-
-var grade = document.getElementById("grade");
-var gradeValue = grade.value;
-
-var addButton = document.getElementById("addStudent");
-var errorMessage = document.getElementById("errorMessage");
-
-var ulPassed = document.getElementById("ulPassed");
-var ulFailed = document.getElementById("ulFailed");
-
-var totalStudents = document.getElementById("totalStudents");
-
-var passedNumber = document.getElementById("passedNumber");
-var failedNumer = document.getElementById("failedNumer");
-var failedPercentage = document.getElementById("failedPercentage");
-
-var college = new College;
-
 function buttonAdd() {
 
     function validateData() {
@@ -41,7 +18,13 @@ function buttonAdd() {
 
     function updateList(exam) {
         var exam = new Exam(subject.value, nameSurname.value, grade.value);
-        console.log(exam);
+
+        if (exam.grade > 10 || exam.grade < 1) {
+            errorMessage.textContent = "Please enter valid grade!"
+            return
+        }
+
+        errorMessage.textContent = "";
 
         college.studentGrades[college.studentGrades.length] += exam;
         if (exam.grade > 5) {
@@ -49,18 +32,18 @@ function buttonAdd() {
             college.passedList[college.passedList.length] += exam;
         } else {
             ulFailed.innerHTML += "<li>" + exam.subject + ", " + exam.student + ", " + exam.grade + "</li>";
-            college.failedList[college.passedList.length] += exam;
+            college.failedList[college.failedList.length] += exam;
         }
-        console.log(college.passedList);
+        console.log();
     }
     updateList();
 
 
     function updateStatistics() {
-        totalStudents.innerHTML = college.studentGrades.length;
-        /* passedNumber.innerHTML = college.passedList.length; */
-        failedNumer.innerHTML = college.failedList.length;
-        failedPercentage.innerHTML = college.failedList.length / college.studentGrades.length * 100 + "%";
+        totalStudents.textContent = parseInt(college.studentGrades.length);
+        document.querySelector(".passedNumber").textContent = parseInt(college.passedList.length);
+        document.querySelector(".failedNumber").textContent = parseInt(college.failedList.length);
+        document.querySelector(".failedPercentage").textContent = (parseInt(college.failedList.length) / parseInt(college.studentGrades.length) * 100).toFixed() + "%";
     }
     updateStatistics();
 }

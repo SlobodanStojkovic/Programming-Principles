@@ -19,6 +19,7 @@
     font-weight: 300;
 }
 
+
 .passedDiv {
     margin: 0 auto;
     background-color: teal;
@@ -30,6 +31,16 @@
     padding: 8px;
 }
 
+.passedNumber {
+    text-align: right;
+    color: whitesmoke;
+    padding-right: 40px;
+}
+
+.passed {
+    float:right;
+}
+
 .failedDiv {
     margin: 0 auto;
     background-color: tomato;
@@ -39,6 +50,24 @@
 .failedP {
     text-align: left;
     padding: 8px;
+}
+
+.failedNumber {
+    text-align: right;
+    color: whitesmoke;
+    padding-right: 10px;
+}
+
+.failedPercentage {
+    text-align: right;
+    background-color: rgb(235, 134, 116);
+    padding: 3px;
+    border-radius: 3px;
+    color: whitesmoke;
+}
+
+.failed {
+    float:right;
 }
 
 .addGrade {
