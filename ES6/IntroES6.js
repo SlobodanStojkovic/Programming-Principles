@@ -269,3 +269,308 @@ b = a;  //this works with let but with CONST vvv
 
 const a = [1, 2, 3];
 a.push(4);  //it allows it to add new elements or change existing ones but we CAN NOT write a = 3 or a = b because that way we have changed its reference, a = a.map() also DONT work because map returns new array
+
+
+/*
+ES6 introduces class declaration, but JavaScript still works the same way. FUnctions are objects, and inheritance is handled through the prototype.
+
+Once you ve created the class, you can create a new instance of the class using the new keyword.
+
+Now that a class object has been created, you can use it as many times as you would like to create new vacation instances. Classes can also be extended. When a class is extended, the subclass inherits the properties and methods of the superclass. Superclass is a class that other classes inherit from.
+
+Instance is object, its a new object created from a class. Class is a patern, some "factory of objects". Instance = Object.
+
+class Expedition extends Vacation >>> means that Expedition inherits Vacation
+*/
+
+class Expedition extends Vacation {
+    constructor(destination, length, gear) {
+        super(destination, length)
+        this.gear = gear
+    }
+
+    print() {
+        super.print()   //takes print method that it inherited and 
+        console.log("Bring your sunglasses and your camera.");  //adds console.log to it, so now new print method will have both
+    }
+}
+
+
+/*
+We should use classes, but with React for example we are focusing on the functional paradigm.
+
+Classes have other features, like getters, setters, and static methods, but you should favor functional techniques over object-oriented techniques.
+*/
+
+class Person {
+    constructor(name) {
+        this.name = name
+    }
+    setAge(age) {
+        this.age = age
+    }
+    getAge() {
+        return this.age;
+    }
+}
+
+let person1 = new Person("Pera");
+
+//  person1.age = 22; is the same as code bellow
+person1.setAge(22);
+
+console.log(person1);
+console.log(person1.getAge());
+
+//GETTERS and SETTERS are methods that set or get properties from a class, as shown in example UP.
+
+
+
+
+//METHODS CALLED directly on class without instancing Objects are STATIC methods.
+Math.random() //Math is BUILT IN CLASS      These are STATIC METHODS, and most commontly those are UTILITY METHODS that serves like tool, some kind of utility.
+
+
+
+
+/*
+Using a class still means that you are using JavaScripts prototypal inheritance.
+
+The rule of thumb with capitalization is that ALL TYPES SHOULD BE CAPITALIZED.
+*/
+
+
+
+
+/* DESTRUCTURING ASSIGNMENT vvv*/
+
+class Person {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+}
+
+let person1 = new Person("Pera", "Peric", 22);
+
+
+function printFullName(person) {
+    /* let firstName = person.firstName
+    let lastName = person.lastName */   //instead of this, in ES6 we can use this > let { firstName, lastName } = person;
+    let { firstName, lastName } = person;
+    console.log(`${firstName} ${lastName}`)
+}
+
+printFullName(person1);     //Pera Peric
+
+
+
+
+class Person {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.address = {
+            street: "Topolska",
+            number: 18,
+            city: "Na vratima pise"
+        }
+    }
+}
+
+let person1 = new Person("Pera", "Peric", 22);
+
+function printAddress(person) {
+    let { street, number, city } = person.address;
+    console.log(`${street}, ${number}, ${city}`)
+}
+
+function printFullName({ firstName, lastName }) {
+    console.log(`${firstName} ${lastName}`)
+}
+
+printFullName(person1)
+printAddress(person1)
+
+
+
+let dogs = ["Snaucer", "Samojed", "Haski"];
+
+let [dog1, dog2] = dogs
+console.log(dog1);  //Snaucer
+console.log(dog2);  //Samojed       //if we want only Haski we will write let [, , dog3] = dogs
+
+
+//The destructuring assignment allows you to locally scope fields within an object and to declare which values will be used. Consider this sandwich object. 
+
+
+let clickHandler = function (e) {
+    if (e.which === 13) {
+        console.log("submit");
+    }
+}
+
+//after DESTRUCTURING IS
+
+let clickHandler = function ({ which }) {
+    if (which === 13) {
+        console.log("submit");
+    }
+}
+
+
+//OR
+
+
+let clickHandler = function ({ which: nameThatSuitsUs }) {
+    if (nameThatSuitsUs === 13) {
+        console.log("submit");
+    }
+}
+
+
+
+
+
+
+/* ARROW FUNCTIONS vvv*/
+
+
+function max(a, b) {
+    var max;
+
+    if (a > b) {
+        return a;
+    }
+
+    if (b > a) {
+        return b;
+    }
+
+    return 'Numbers are equal';
+
+}
+
+
+//written in ES6 is
+
+const max = (a, b) => {
+    if (a > b) {
+        return a;
+    }
+
+    if (b > a) {
+        return b;
+    }
+
+    return 'Numbers are equal';
+}
+
+/* If there is only one parameter and you are not using destructuring, parentheses can be ommited. Needs parentheses if there are no parameters. If there is only one expression, braces can be omitted. Its value is returned without using return keyword > the expression can be another arrow function that is returned. If expression is an object literal, wrap it in parentheses to distinguish it from block of code */
+
+
+
+
+/* The REST/SPREAD Operator */
+
+/* Gathers variable number of arguments after named parameters into an array. If no corresponding arguments are supplied, value is an empty array, not undefined. Removes need for use of arguments object. */
+
+
+function capitalize(...args) {
+    console.log(args);
+    let newArray = [];
+    args.forEach(element => {
+        newArray.push(element.toUpperCase());
+    });
+    return newArray;
+}
+
+let capitalizedArray = capitalize("i", "you", "he", "she");
+
+console.log(capitalizedArray);
+
+
+//ARGUMENTS IS OBJECT LIKE but we cannot use forEach to them
+
+//... is REST OPERATOR, and we use it before arguments, so he takes everything and put it in array.
+
+const lakes = ["Donner", "Marlette", "Fallen Leaf", "Cascade"]
+
+const [first, ...whatsLeft] = lakes
+console.log(first); //Donner
+console.log(whatsLeft); //[ 'Marlette', 'Fallen Leaf', 'Cascade' ]
+
+
+
+
+
+/* SPREAD OPERATOR */
+
+const peaks = ["Tallac", "Ralston", "Rose"];
+const canyons = ["Ward", "Blackwood"];
+
+const tahoe = [...peaks, ...canyons]
+
+console.log(tahoe)  //[ 'Tallac', 'Ralston', 'Rose', 'Ward', 'Blackwood' ]
+
+
+
+
+const peaks = ["Tallac", "Ralston", "Rose"];
+const copyPeaks = [...peaks];
+console.log(copyPeaks); //[ 'Tallac', 'Ralston', 'Rose' ]   its copy of peaks, but it has OTHER REFFERENCE
+
+
+copyPeaks.push("Something");
+console.log(peaks);
+console.log(copyPeaks); //[ 'Tallac', 'Ralston', 'Rose', 'Something' ]
+
+
+
+
+const ob1 = { a: 1, b: 2 }
+const ob2 = { c: 3, d: 4 }
+
+const mergedObj = { ...ob1, ...ob2 }    //{ a: 1, b: 2, c: 3, d: 4 }
+
+const copyOb1 = {...ob1};   //{ a: 1, b: 2 }
+const extendedOb1 = {...ob1, e:5};  //{ a: 1, b: 2, e: 5 }
+const extendedOb1AndBOverride = {...ob1, b:5};   //{ a: 1, b: 5 }
+
+
+
+/* Spread operator can also be used for objects. Using it is similar to using it with arrays. */
+
+let a = "something"
+let b = "something else"
+
+let obj = {
+    a: a,
+    b: b
+}
+console.log(obj);   //{ a: 'something', b: 'something else' }
+
+
+//in ES6 we can write it like this vvv
+
+let a = "something"
+let b = "something else"
+
+let obj = {
+    a,
+    b
+}
+console.log(obj);   //{ a: 'something', b: 'something else' }
+
+
+
+
+
+
+
+let a = [2, 4, 5, 18, 22, 7];
+
+console.log(Math.max(a));     //NaN
+console.log(Math.max(...a));  //22  because we need sto spread array in order that Math.max can see it as parametars
