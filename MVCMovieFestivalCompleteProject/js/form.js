@@ -56,6 +56,8 @@ function createNewMovie() {
     sel.appendChild(opt);
 }
 
+
+
 function createNewProgram() {
     var date = new Date(dateInputField.value);
     var day = date.getDate();
@@ -109,6 +111,8 @@ function createNewProgram() {
     // add opt to end of select box (sel)
     sel.appendChild(opt);
 }
+
+
 
 function addMovieToProgram() {
     var movieValue = selectMovie.value;

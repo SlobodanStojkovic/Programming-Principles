@@ -1,5 +1,11 @@
+body {
+    background-image: url(../assets/SloMovieFestival.png);
+    color: white;
+    border: white;
+}
+
 .container {
-    border: 1px solid black;
+    border: 1px solid white;
     padding: 10px;
 }
 
@@ -11,13 +17,14 @@ h1 {
 .wrapper {
     border: 1px solid black;
     padding: 10px;
+    background-color: gray;
 }
 
 input {
    width: 99.5%;
    padding: 3px;
    border-radius: 3px;
-   border: 1px solid lightgray;  
+   border: 1px solid black;  
    margin: 5px 0;
 }
 
